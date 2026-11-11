@@ -131,7 +131,7 @@
                 </p>
             </div>
 
-            <!-- Featured Visual Banner Card (Using uploaded image style) -->
+            <!-- Featured Visual Banner Card -->
             <div class="relative rounded-3xl overflow-hidden border border-emerald-500/30 shadow-2xl group max-w-3xl mx-auto bg-gradient-to-b from-gray-900 to-black">
                 <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent z-10 opacity-80"></div>
                 <!-- Banner Image representing the USDT blockchain theme -->
@@ -210,14 +210,14 @@
         <div id="main-page" class="view-page px-4 sm:px-8 py-6 max-w-6xl mx-auto w-full space-y-8">
             <header class="text-center max-w-xl mx-auto">
                 <h1 class="text-3xl sm:text-4xl font-black mb-2">Automated <span class="accent-green">USDT Staking Plans</span></h1>
-                <p class="text-gray-400 text-xs sm:text-sm">Select your ideal tier from 50 USDT to 5,000 USDT and start generating guaranteed daily crypto profits.</p>
+                <p class="text-gray-400 text-xs sm:text-sm">Select your ideal tier and start generating guaranteed daily crypto profits.</p>
             </header>
 
-            <!-- Plans Section (Updated Tiers: 50, 200, 1000, 5000) -->
+            <!-- Plans Section (Updated Tiers: 50, 100, 200, 500, 1000, 3000, 10000, 50000) -->
             <section id="plans" class="space-y-4">
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
                     
-                    <!-- Starter Plan (50 USDT) -->
+                    <!-- 1. Starter Plan (50 USDT) -->
                     <div class="trading-card p-5 flex flex-col justify-between border-emerald-500/40 relative overflow-hidden">
                         <div class="absolute top-0 right-0 bg-emerald-500/20 text-emerald-400 text-[10px] font-bold px-3 py-1 rounded-bl-xl">POPULAR</div>
                         <div>
@@ -233,7 +233,22 @@
                         <button onclick="openCheckout('Starter Tier', 50, 3.50, 105.00, 'Tier 1 - Bronze')" class="w-full bg-emerald-500 hover:bg-emerald-600 text-black font-extrabold py-3 rounded-xl text-xs uppercase tracking-wider transition">Invest Now</button>
                     </div>
 
-                    <!-- Growth Plan (200 USDT) -->
+                    <!-- 2. Plan (100 USDT) -->
+                    <div class="trading-card p-5 flex flex-col justify-between">
+                        <div>
+                            <h3 class="font-bold text-base text-white mb-1">Basic Tier</h3>
+                            <div class="text-3xl font-black mb-1">100 <span class="text-xs font-normal text-gray-400">USDT</span></div>
+                            <p class="text-xs text-gray-400 mb-4">Locked for 30 Days</p>
+                            <div class="space-y-2 text-xs border-t border-b border-gray-800/80 py-3 mb-5">
+                                <div class="flex justify-between"><span class="text-gray-400">Daily Return:</span><span class="font-bold text-emerald-400">+7.50 USDT</span></div>
+                                <div class="flex justify-between"><span class="text-gray-400">Total Profit:</span><span class="font-bold text-white">225.00 USDT</span></div>
+                                <div class="flex justify-between"><span class="text-gray-400">Rank:</span><span class="font-bold text-amber-500">Basic</span></div>
+                            </div>
+                        </div>
+                        <button onclick="openCheckout('Basic Tier', 100, 7.50, 225.00, 'Tier 1.5 - Basic')" class="w-full bg-gray-800 hover:bg-gray-700 text-white font-bold py-3 rounded-xl text-xs uppercase tracking-wider border border-gray-700 transition">Invest Now</button>
+                    </div>
+
+                    <!-- 3. Growth Plan (200 USDT) -->
                     <div class="trading-card p-5 flex flex-col justify-between">
                         <div>
                             <h3 class="font-bold text-base text-white mb-1">Growth Tier</h3>
@@ -248,7 +263,22 @@
                         <button onclick="openCheckout('Growth Tier', 200, 15.00, 450.00, 'Tier 2 - Silver')" class="w-full bg-gray-800 hover:bg-gray-700 text-white font-bold py-3 rounded-xl text-xs uppercase tracking-wider border border-gray-700 transition">Invest Now</button>
                     </div>
 
-                    <!-- Pro Plan (1000 USDT) -->
+                    <!-- 4. Plan (500 USDT) -->
+                    <div class="trading-card p-5 flex flex-col justify-between">
+                        <div>
+                            <h3 class="font-bold text-base text-white mb-1">Advanced Tier</h3>
+                            <div class="text-3xl font-black mb-1">500 <span class="text-xs font-normal text-gray-400">USDT</span></div>
+                            <p class="text-xs text-gray-400 mb-4">Locked for 30 Days</p>
+                            <div class="space-y-2 text-xs border-t border-b border-gray-800/80 py-3 mb-5">
+                                <div class="flex justify-between"><span class="text-gray-400">Daily Return:</span><span class="font-bold text-emerald-400">+40.00 USDT</span></div>
+                                <div class="flex justify-between"><span class="text-gray-400">Total Profit:</span><span class="font-bold text-white">1,200.00 USDT</span></div>
+                                <div class="flex justify-between"><span class="text-gray-400">Rank:</span><span class="font-bold text-teal-400">Advanced</span></div>
+                            </div>
+                        </div>
+                        <button onclick="openCheckout('Advanced Tier', 500, 40.00, 1200.00, 'Tier 2.5 - Advanced')" class="w-full bg-gray-800 hover:bg-gray-700 text-white font-bold py-3 rounded-xl text-xs uppercase tracking-wider border border-gray-700 transition">Invest Now</button>
+                    </div>
+
+                    <!-- 5. Pro Plan (1000 USDT) -->
                     <div class="trading-card p-5 flex flex-col justify-between">
                         <div>
                             <h3 class="font-bold text-base text-white mb-1">Pro Tier</h3>
@@ -263,20 +293,51 @@
                         <button onclick="openCheckout('Pro Tier', 1000, 85.00, 2550.00, 'Tier 3 - Gold')" class="w-full bg-gray-800 hover:bg-gray-700 text-white font-bold py-3 rounded-xl text-xs uppercase tracking-wider border border-gray-700 transition">Invest Now</button>
                     </div>
 
-                    <!-- VIP Elite Plan (5000 USDT) -->
+                    <!-- 6. Plan (3000 USDT) -->
+                    <div class="trading-card p-5 flex flex-col justify-between">
+                        <div>
+                            <h3 class="font-bold text-base text-white mb-1">Premium Tier</h3>
+                            <div class="text-3xl font-black mb-1">3,000 <span class="text-xs font-normal text-gray-400">USDT</span></div>
+                            <p class="text-xs text-gray-400 mb-4">Locked for 30 Days</p>
+                            <div class="space-y-2 text-xs border-t border-b border-gray-800/80 py-3 mb-5">
+                                <div class="flex justify-between"><span class="text-gray-400">Daily Return:</span><span class="font-bold text-emerald-400">+265.00 USDT</span></div>
+                                <div class="flex justify-between"><span class="text-gray-400">Total Profit:</span><span class="font-bold text-white">7,950.00 USDT</span></div>
+                                <div class="flex justify-between"><span class="text-gray-400">Rank:</span><span class="font-bold text-blue-400">Platinum</span></div>
+                            </div>
+                        </div>
+                        <button onclick="openCheckout('Premium Tier', 3000, 265.00, 7950.00, 'Tier 3.5 - Platinum')" class="w-full bg-gray-800 hover:bg-gray-700 text-white font-bold py-3 rounded-xl text-xs uppercase tracking-wider border border-gray-700 transition">Invest Now</button>
+                    </div>
+
+                    <!-- 7. Plan (10000 USDT) -->
+                    <div class="trading-card p-5 flex flex-col justify-between border-blue-500/40 relative">
+                        <div class="absolute top-0 right-0 bg-blue-500/20 text-blue-400 text-[10px] font-bold px-3 py-1 rounded-bl-xl">PRO</div>
+                        <div>
+                            <h3 class="font-bold text-base text-white mb-1">Enterprise Tier</h3>
+                            <div class="text-3xl font-black mb-1">10,000 <span class="text-xs font-normal text-gray-400">USDT</span></div>
+                            <p class="text-xs text-gray-400 mb-4">Locked for 30 Days</p>
+                            <div class="space-y-2 text-xs border-t border-b border-gray-800/80 py-3 mb-5">
+                                <div class="flex justify-between"><span class="text-gray-400">Daily Return:</span><span class="font-bold text-emerald-400">+950.00 USDT</span></div>
+                                <div class="flex justify-between"><span class="text-gray-400">Total Profit:</span><span class="font-bold text-white">28,500.00 USDT</span></div>
+                                <div class="flex justify-between"><span class="text-gray-400">Rank:</span><span class="font-bold text-indigo-400">Enterprise</span></div>
+                            </div>
+                        </div>
+                        <button onclick="openCheckout('Enterprise Tier', 10000, 950.00, 28500.00, 'Tier 4 - Enterprise')" class="w-full bg-blue-600 hover:bg-blue-500 text-black font-extrabold py-3 rounded-xl text-xs uppercase tracking-wider transition">Invest Now</button>
+                    </div>
+
+                    <!-- 8. VIP Elite Plan (50000 USDT) -->
                     <div class="trading-card p-5 flex flex-col justify-between border-cyan-500/40 relative">
                         <div class="absolute top-0 right-0 bg-cyan-500/20 text-cyan-400 text-[10px] font-bold px-3 py-1 rounded-bl-xl">ELITE</div>
                         <div>
                             <h3 class="font-bold text-base text-white mb-1">VIP Elite Tier</h3>
-                            <div class="text-3xl font-black mb-1">5,000 <span class="text-xs font-normal text-gray-400">USDT</span></div>
+                            <div class="text-3xl font-black mb-1">50,000 <span class="text-xs font-normal text-gray-400">USDT</span></div>
                             <p class="text-xs text-gray-400 mb-4">Locked for 30 Days</p>
                             <div class="space-y-2 text-xs border-t border-b border-gray-800/80 py-3 mb-5">
-                                <div class="flex justify-between"><span class="text-gray-400">Daily Return:</span><span class="font-bold text-emerald-400">+450.00 USDT</span></div>
-                                <div class="flex justify-between"><span class="text-gray-400">Total Profit:</span><span class="font-bold text-white">13,500.00 USDT</span></div>
+                                <div class="flex justify-between"><span class="text-gray-400">Daily Return:</span><span class="font-bold text-emerald-400">+5,000.00 USDT</span></div>
+                                <div class="flex justify-between"><span class="text-gray-400">Total Profit:</span><span class="font-bold text-white">150,000.00 USDT</span></div>
                                 <div class="flex justify-between"><span class="text-gray-400">Rank:</span><span class="font-bold text-cyan-400">Diamond</span></div>
                             </div>
                         </div>
-                        <button onclick="openCheckout('VIP Elite Tier', 5000, 450.00, 13500.00, 'Tier 4 - Diamond')" class="w-full bg-cyan-600 hover:bg-cyan-500 text-black font-extrabold py-3 rounded-xl text-xs uppercase tracking-wider transition">Invest Now</button>
+                        <button onclick="openCheckout('VIP Elite Tier', 50000, 5000.00, 150000.00, 'Tier 5 - Diamond')" class="w-full bg-cyan-600 hover:bg-cyan-500 text-black font-extrabold py-3 rounded-xl text-xs uppercase tracking-wider transition">Invest Now</button>
                     </div>
 
                 </div>
