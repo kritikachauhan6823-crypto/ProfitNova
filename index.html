@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ProfitNova - Advanced Blockchain Staking Platform</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- FontAwesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+
+        :root {
+            --background: #030808;
+            --foreground: #e8e8e8;
+            --accent: #14f195;
+            --accent-dim: rgba(20, 241, 149, 0.2);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        html, body {
+            overflow-x: hidden;
+            background: var(--background);
+            color: var(--foreground);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            min-height: 100vh;
+        }
+
+        /* Grain & Glow Background Overlay */
+        .grain-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 100;
+            opacity: 0.03;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+        }
+
+        .glow-effect {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: rgba(20, 241, 149, 0.12);
+            filter: blur(100px);
+            border-radius: 50%;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .trading-card {
+            background: linear-gradient(180deg, rgba(13, 22, 19, 0.9) 0%, rgba(6, 12, 10, 0.95) 100%);
+            border: 1px solid rgba(20, 241, 149, 0.15);
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+            transition: all 0.3s ease;
+        }
+        .trading-card:hover {
+            border-color: rgba(20, 241, 149, 0.35);
+            box-shadow: 0 12px 40px rgba(20, 241, 149, 0.1);
+        }
+
+        .accent-green { color: #14f195; }
+        
+        .ticker-wrap {
+            width: 100%;
+            overflow: hidden;
+            background: rgba(20, 241, 149, 0.05);
+            border-bottom: 1px solid rgba(20, 241, 149, 0.1);
+            white-space: nowrap;
+        }
+        .ticker {
+            display: inline-block;
+            animation: marquee 25s linear infinite;
+        }
+        @keyframes marquee {
+            0% { transform: translate3d(0, 0, 0); }
+            100% { transform: translate3d(-50%, 0, 0); }
+        }
+
+        /* Lightbox modal for QR code */
+        #qr-lightbox {
+            transition: opacity 0.3s ease;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col relative text-gray-100">
+
+    <div class="grain-overlay"></div>
+    <div class="glow-effect top-0 left-1/4"></div>
+    <div class="glow-effect bottom-1/3 right-10"></div>
+
+    <!-- ===== PAGE 1: HERO & BEGINNING LANDING SCREEN ===== -->
+    <section id="hero-page" class="min-h-screen flex flex-col justify-between p-4 sm:p-8 z-10 relative">
+        <!-- Top Navbar -->
+        <header class="flex justify-between items-center max-w-6xl mx-auto w-full pt-2">
+            <div class="flex items-center space-x-3">
+                <div class="p-2.5 bg-emerald-500/10 rounded-xl border border-emerald-500/30">
+                    <i class="fa-solid fa-cube text-xl text-emerald-400"></i>
+                </div>
+                <span class="text-2xl font-extrabold tracking-wide">Profit<span class="accent-green">Nova</span></span>
+            </div>
+            <div class="flex items-center gap-2 bg-emerald-500/10 border border-emerald-500/30 px-3 py-1.5 rounded-full text-xs font-mono text-emerald-400">
+                <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                Network Online
+            </div>
+        </header>
+
+        <!-- Hero Content & Uploaded Image Banner Style -->
+        <main class="max-w-4xl mx-auto text-center space-y-8 my-auto py-8">
+            <div class="space-y-4">
+                <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-bold uppercase tracking-wider">
+                    <i class="fa-solid fa-shield-halved"></i> TRC-20 Smart Staking Protocol
+                </div>
+                <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight">
+                    Secure Daily Returns with <span class="accent-green">ProfitNova</span>
+                </h1>
+                <p class="text-gray-400 text-sm sm:text-base max-w-xl mx-auto">
+                    Experience automated institutional-grade crypto staking starting from just 50 USDT with guaranteed daily payouts and live on-chain transparency.
+                </p>
+            </div>
+
+            <!-- Featured Visual Banner Card (Using uploaded image style) -->
+            <div class="relative rounded-3xl overflow-hidden border border-emerald-500/30 shadow-2xl group max-w-3xl mx-auto bg-gradient-to-b from-gray-900 to-black">
+                <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent z-10 opacity-80"></div>
+                <!-- Banner Image representing the USDT blockchain theme -->
+                <img src="cf62a31b-d37a-4c3f-a5db-aabf0506c6fe.png" alt="ProfitNova USDT Blockchain" class="w-full h-64 sm:h-96 object-cover object-center group-hover:scale-105 transition duration-700 opacity-90" onerror="this.src='https://placehold.co/800x450/030808/14f195?text=ProfitNova+USDT+Staking';">
+                
+                <div class="absolute bottom-6 left-6 right-6 z-20 flex flex-col sm:flex-row items-center justify-between gap-4 text-left">
+                    <div>
+                        <div class="text-xs text-emerald-400 font-mono font-bold mb-1"><i class="fa-solid fa-bolt"></i> HIGH-YIELD STAKING LIVE</div>
+                        <div class="text-lg sm:text-xl font-black text-white">Up to 360% Annualized Return</div>
+                    </div>
+                    <button onclick="enterPlatform()" class="w-full sm:w-auto px-8 py-3.5 bg-gradient-to-r from-emerald-500 to-teal-400 text-black font-extrabold text-xs uppercase tracking-wider rounded-xl shadow-lg hover:shadow-emerald-500/25 transition">
+                        Launch Dashboard <i class="fa-solid fa-arrow-right ml-1"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Trust Badges Bar -->
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-4">
+                <div class="trading-card p-3.5 flex items-center gap-3">
+                    <div class="text-emerald-400 text-lg"><i class="fa-solid fa-lock"></i></div>
+                    <div class="text-left"><div class="text-xs font-bold text-white">SSL Secured</div><div class="text-[10px] text-gray-400">256-Bit Encrypted</div></div>
+                </div>
+                <div class="trading-card p-3.5 flex items-center gap-3">
+                    <div class="text-emerald-400 text-lg"><i class="fa-solid fa-file-contract"></i></div>
+                    <div class="text-left"><div class="text-xs font-bold text-white">Audited Contract</div><div class="text-[10px] text-gray-400">Zero Vulnerabilities</div></div>
+                </div>
+                <div class="trading-card p-3.5 flex items-center gap-3">
+                    <div class="text-emerald-400 text-lg"><i class="fa-solid fa-server"></i></div>
+                    <div class="text-left"><div class="text-xs font-bold text-white">99.9% Uptime</div><div class="text-[10px] text-gray-400">High Availability</div></div>
+                </div>
+                <div class="trading-card p-3.5 flex items-center gap-3">
+                    <div class="text-emerald-400 text-lg"><i class="fa-solid fa-bolt-lightning"></i></div>
+                    <div class="text-left"><div class="text-xs font-bold text-white">Instant Payouts</div><div class="text-[10px] text-gray-400">Automated Daily</div></div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer Info -->
+        <footer class="text-center text-xs text-gray-500 py-4 max-w-6xl mx-auto w-full">
+            &copy; 2026 ProfitNova Global Platform. All rights reserved.
+        </footer>
+    </section>
+
+
+    <!-- ===== PAGE 2: STAKING & TRADING PLATFORM ===== -->
+    <div id="staking-page" class="hidden min-h-screen flex flex-col z-20 relative">
+        <!-- Ticker Bar -->
+        <div class="ticker-wrap text-xs py-2">
+            <div class="ticker flex space-x-12 text-gray-300 font-mono">
+                <span><i class="fa-brands fa-bitcoin text-yellow-500 mr-1"></i> BTC/USDT: <span class="text-emerald-400 font-bold">$94,250.80 (+3.4%)</span></span>
+                <span><i class="fa-brands fa-ethereum text-indigo-400 mr-1"></i> ETH/USDT: <span class="text-emerald-400 font-bold">$3,480.20 (+2.1%)</span></span>
+                <span><i class="fa-solid fa-coins text-emerald-400 mr-1"></i> USDT/TRX: <span class="text-emerald-400 font-bold">1.0000 (0.0%)</span></span>
+                <span><i class="fa-solid fa-shield-check text-blue-400 mr-1"></i> TRC-20 Status: <span class="text-emerald-400 font-bold">Optimal</span></span>
+            </div>
+        </div>
+
+        <!-- Navigation -->
+        <nav class="border-b border-gray-800 bg-gray-950/90 backdrop-blur sticky top-0 z-50 px-4 sm:px-8 py-3.5 flex justify-between items-center">
+            <div class="flex items-center space-x-3 cursor-pointer" onclick="switchToHeroPage()">
+                <div class="p-2 bg-emerald-500/10 rounded-xl border border-emerald-500/30">
+                    <i class="fa-solid fa-cube text-lg accent-green"></i>
+                </div>
+                <span class="text-xl font-extrabold tracking-wide">Profit<span class="accent-green">Nova</span></span>
+            </div>
+            <div class="flex items-center gap-3">
+                <div class="bg-gray-900 border border-emerald-500/30 px-3.5 py-2 rounded-xl text-xs font-mono text-emerald-400 shadow-inner">
+                    Bal: <span id="nav-balance" class="font-bold text-white">0.00</span> USDT
+                </div>
+                <button onclick="switchToHeroPage()" class="bg-gray-900 hover:bg-gray-800 text-gray-300 border border-gray-800 px-3 py-2 rounded-xl text-xs font-bold">
+                    <i class="fa-solid fa-house"></i>
+                </button>
+            </div>
+        </nav>
+
+        <!-- MAIN PLATFORM VIEW -->
+        <div id="main-page" class="view-page px-4 sm:px-8 py-6 max-w-6xl mx-auto w-full space-y-8">
+            <header class="text-center max-w-xl mx-auto">
+                <h1 class="text-3xl sm:text-4xl font-black mb-2">Automated <span class="accent-green">USDT Staking Plans</span></h1>
+                <p class="text-gray-400 text-xs sm:text-sm">Select your ideal tier from 50 USDT to 5,000 USDT and start generating guaranteed daily crypto profits.</p>
+            </header>
+
+            <!-- Plans Section (Updated Tiers: 50, 200, 1000, 5000) -->
+            <section id="plans" class="space-y-4">
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+                    
+                    <!-- Starter Plan (50 USDT) -->
+                    <div class="trading-card p-5 flex flex-col justify-between border-emerald-500/40 relative overflow-hidden">
+                        <div class="absolute top-0 right-0 bg-emerald-500/20 text-emerald-400 text-[10px] font-bold px-3 py-1 rounded-bl-xl">POPULAR</div>
+                        <div>
+                            <h3 class="font-bold text-base text-white mb-1">Starter Tier</h3>
+                            <div class="text-3xl font-black mb-1">50 <span class="text-xs font-normal text-gray-400">USDT</span></div>
+                            <p class="text-xs text-gray-400 mb-4">Locked for 30 Days</p>
+                            <div class="space-y-2 text-xs border-t border-b border-gray-800/80 py-3 mb-5">
+                                <div class="flex justify-between"><span class="text-gray-400">Daily Return:</span><span class="font-bold text-emerald-400">+3.50 USDT</span></div>
+                                <div class="flex justify-between"><span class="text-gray-400">Total Profit:</span><span class="font-bold text-white">105.00 USDT</span></div>
+                                <div class="flex justify-between"><span class="text-gray-400">Rank:</span><span class="font-bold text-amber-600">Bronze</span></div>
+                            </div>
+                        </div>
+                        <button onclick="openCheckout('Starter Tier', 50, 3.50, 105.00, 'Tier 1 - Bronze')" class="w-full bg-emerald-500 hover:bg-emerald-600 text-black font-extrabold py-3 rounded-xl text-xs uppercase tracking-wider transition">Invest Now</button>
+                    </div>
+
+                    <!-- Growth Plan (200 USDT) -->
+                    <div class="trading-card p-5 flex flex-col justify-between">
+                        <div>
+                            <h3 class="font-bold text-base text-white mb-1">Growth Tier</h3>
+                            <div class="text-3xl font-black mb-1">200 <span class="text-xs font-normal text-gray-400">USDT</span></div>
+                            <p class="text-xs text-gray-400 mb-4">Locked for 30 Days</p>
+                            <div class="space-y-2 text-xs border-t border-b border-gray-800/80 py-3 mb-5">
+                                <div class="flex justify-between"><span class="text-gray-400">Daily Return:</span><span class="font-bold text-emerald-400">+15.00 USDT</span></div>
+                                <div class="flex justify-between"><span class="text-gray-400">Total Profit:</span><span class="font-bold text-white">450.00 USDT</span></div>
+                                <div class="flex justify-between"><span class="text-gray-400">Rank:</span><span class="font-bold text-gray-300">Silver</span></div>
+                            </div>
+                        </div>
+                        <button onclick="openCheckout('Growth Tier', 200, 15.00, 450.00, 'Tier 2 - Silver')" class="w-full bg-gray-800 hover:bg-gray-700 text-white font-bold py-3 rounded-xl text-xs uppercase tracking-wider border border-gray-700 transition">Invest Now</button>
+                    </div>
+
+                    <!-- Pro Plan (1000 USDT) -->
+                    <div class="trading-card p-5 flex flex-col justify-between">
+                        <div>
+                            <h3 class="font-bold text-base text-white mb-1">Pro Tier</h3>
+                            <div class="text-3xl font-black mb-1">1,000 <span class="text-xs font-normal text-gray-400">USDT</span></div>
+                            <p class="text-xs text-gray-400 mb-4">Locked for 30 Days</p>
+                            <div class="space-y-2 text-xs border-t border-b border-gray-800/80 py-3 mb-5">
+                                <div class="flex justify-between"><span class="text-gray-400">Daily Return:</span><span class="font-bold text-emerald-400">+85.00 USDT</span></div>
+                                <div class="flex justify-between"><span class="text-gray-400">Total Profit:</span><span class="font-bold text-white">2,550.00 USDT</span></div>
+                                <div class="flex justify-between"><span class="text-gray-400">Rank:</span><span class="font-bold text-yellow-400">Gold</span></div>
+                            </div>
+                        </div>
+                        <button onclick="openCheckout('Pro Tier', 1000, 85.00, 2550.00, 'Tier 3 - Gold')" class="w-full bg-gray-800 hover:bg-gray-700 text-white font-bold py-3 rounded-xl text-xs uppercase tracking-wider border border-gray-700 transition">Invest Now</button>
+                    </div>
+
+                    <!-- VIP Elite Plan (5000 USDT) -->
+                    <div class="trading-card p-5 flex flex-col justify-between border-cyan-500/40 relative">
+                        <div class="absolute top-0 right-0 bg-cyan-500/20 text-cyan-400 text-[10px] font-bold px-3 py-1 rounded-bl-xl">ELITE</div>
+                        <div>
+                            <h3 class="font-bold text-base text-white mb-1">VIP Elite Tier</h3>
+                            <div class="text-3xl font-black mb-1">5,000 <span class="text-xs font-normal text-gray-400">USDT</span></div>
+                            <p class="text-xs text-gray-400 mb-4">Locked for 30 Days</p>
+                            <div class="space-y-2 text-xs border-t border-b border-gray-800/80 py-3 mb-5">
+                                <div class="flex justify-between"><span class="text-gray-400">Daily Return:</span><span class="font-bold text-emerald-400">+450.00 USDT</span></div>
+                                <div class="flex justify-between"><span class="text-gray-400">Total Profit:</span><span class="font-bold text-white">13,500.00 USDT</span></div>
+                                <div class="flex justify-between"><span class="text-gray-400">Rank:</span><span class="font-bold text-cyan-400">Diamond</span></div>
+                            </div>
+                        </div>
+                        <button onclick="openCheckout('VIP Elite Tier', 5000, 450.00, 13500.00, 'Tier 4 - Diamond')" class="w-full bg-cyan-600 hover:bg-cyan-500 text-black font-extrabold py-3 rounded-xl text-xs uppercase tracking-wider transition">Invest Now</button>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- Dashboard Analytics Section -->
+            <section id="dashboard" class="space-y-4 pt-6">
+                <div class="flex flex-col sm:flex-row justify-between items-center gap-3">
+                    <h2 class="text-xl font-extrabold">Active Staking Dashboard</h2>
+                    <span id="user-rank-badge" class="bg-gray-900 border border-yellow-500/40 text-yellow-400 text-xs font-bold px-4 py-2 rounded-xl text-center shadow">Rank: No Active Staking</span>
+                </div>
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+                    <div class="trading-card p-4">
+                        <p class="text-[10px] text-gray-400 uppercase tracking-wider mb-1">Available Balance</p>
+                        <h3 class="text-lg sm:text-xl font-black text-white"><span id="dash-balance">0.00</span> USDT</h3>
+                    </div>
+                    <div class="trading-card p-4">
+                        <p class="text-[10px] text-gray-400 uppercase tracking-wider mb-1">Active Locked</p>
+                        <h3 class="text-lg sm:text-xl font-black text-white"><span id="dash-locked">0.00</span> USDT</h3>
+                    </div>
+                    <div class="trading-card p-4">
+                        <p class="text-[10px] text-gray-400 uppercase tracking-wider mb-1">Total Profits</p>
+                        <h3 class="text-lg sm:text-xl font-black text-emerald-400"><span id="dash-profit">0.00</span> USDT</h3>
+                    </div>
+                    <div class="trading-card p-4">
+                        <p class="text-[10px] text-gray-400 uppercase tracking-wider mb-1">Days Remaining</p>
+                        <h3 class="text-lg sm:text-xl font-black text-white"><span id="dash-days">0</span> Days</h3>
+                    </div>
+                </div>
+
+                <div class="trading-card p-5">
+                    <div class="h-60 w-full"><canvas id="profitChart"></canvas></div>
+                </div>
+                
+                <button onclick="claimDailyReward()" class="w-full bg-gradient-to-r from-emerald-500 to-teal-400 hover:from-emerald-600 hover:to-teal-500 text-black font-extrabold py-3.5 rounded-xl text-xs uppercase tracking-wider shadow-lg transition">Claim Daily Profit Return</button>
+            </section>
+
+            <!-- Activity Transactions Log -->
+            <section id="transactions" class="trading-card p-5">
+                <h3 class="text-base font-bold mb-4 flex items-center gap-2"><i class="fa-solid fa-clock-rotate-left text-emerald-400"></i> Activity & Transaction Log</h3>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left text-xs text-gray-300">
+                        <thead class="bg-gray-900 text-gray-400 uppercase text-[10px]">
+                            <tr><th class="py-2.5 px-3 rounded-l-lg">Type</th><th class="py-2.5 px-3">Amount</th><th class="py-2.5 px-3">Time</th><th class="py-2.5 px-3 rounded-r-lg">Status</th></tr>
+                        </thead>
+                        <tbody id="tx-table-body" class="divide-y divide-gray-800">
+                            <tr><td colspan="4" class="text-center py-6 text-gray-500">No activity logged yet. Complete a staking investment to view logs.</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </div>
+
+        <!-- CHECKOUT & PAYMENT PAGE -->
+        <div id="checkout-page" class="view-page hidden px-4 py-8 max-w-lg mx-auto w-full space-y-6">
+            <button onclick="navigatePlatform('main-page')" class="bg-gray-900 hover:bg-gray-800 text-gray-300 text-xs font-bold px-4 py-2 rounded-xl border border-gray-800 transition"><i class="fa-solid fa-arrow-left mr-1"></i> Back to Plans</button>
+            
+            <div class="space-y-4">
+                <div class="trading-card p-6 border-emerald-500/50">
+                    <h2 id="chk-plan-name" class="text-xl font-black text-white mb-3">Starter Tier</h2>
+                    <div class="space-y-2 text-xs border-t border-gray-800 pt-3">
+                        <div class="flex justify-between"><span class="text-gray-400">Staking Amount:</span><span class="font-bold text-white"><span id="chk-amount">50</span> USDT</span></div>
+                        <div class="flex justify-between"><span class="text-gray-400">Daily Return:</span><span class="font-bold text-emerald-400"><span id="chk-daily">3.50</span> USDT</span></div>
+                        <div class="flex justify-between"><span class="text-gray-400">Assigned Rank:</span><span id="chk-rank" class="font-bold text-amber-600">Tier 1 - Bronze</span></div>
+                    </div>
+                </div>
+
+                <div class="trading-card p-6 space-y-5">
+                    <div class="flex justify-between items-center">
+                        <h3 class="text-sm font-bold text-white uppercase tracking-wider">Complete TRC-20 Payment</h3>
+                        <span class="text-[10px] bg-emerald-500/10 text-emerald-400 px-2 py-0.5 rounded font-mono">TRON Network</span>
+                    </div>
+
+                    <!-- QR Scanner Widget (Clickable to enlarge & download) -->
+                    <div class="bg-gray-950 p-4 rounded-xl border border-gray-800 flex flex-col items-center text-center space-y-3">
+                        <div class="relative group cursor-pointer" onclick="openQrLightbox()">
+                            <img id="qr-image-source" src="WhatsApp Image 2026-11-09 at 11.41.25 PM.jpeg" alt="QR Scanner" class="w-36 h-36 bg-white p-2 rounded-xl object-contain shadow-lg border border-gray-700 transition transform group-hover:scale-105" onerror="this.src='https://placehold.co/200x200/ffffff/000000?text=Scan+QR+Code';">
+                            <div class="absolute inset-0 bg-black/40 rounded-xl opacity-0 group-hover:opacity-100 flex items-center justify-center transition text-white text-xs font-bold gap-1">
+                                <i class="fa-solid fa-expand"></i> Click to Zoom
+                            </div>
+                        </div>
+                        <p class="text-[11px] text-gray-400">Click QR Code to enlarge or download to your device</p>
+                    </div>
+
+                    <!-- Wallet Address with Copy Button -->
+                    <div class="space-y-1.5">
+                        <label class="text-[11px] text-gray-400 block font-bold">TRC-20 Deposit Address</label>
+                        <div class="bg-gray-950 border border-gray-800 rounded-xl p-3 flex items-center justify-between gap-2">
+                            <span id="wallet-address-text" class="text-xs font-mono text-emerald-400 break-all select-all">TEkbzpGAGoCcrQeTZP6uGc78b1Lg8LnyTt</span>
+                            <button onclick="copyWalletAddress()" id="copy-btn" class="bg-emerald-500 hover:bg-emerald-600 text-black font-bold px-3.5 py-2 rounded-lg text-xs uppercase transition shrink-0 flex items-center gap-1.5">
+                                <i class="fa-solid fa-copy"></i> Copy
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="space-y-1.5">
+                        <label class="text-xs text-gray-300 font-bold block">Enter Transaction Hash (TxID)</label>
+                        <input type="text" id="tx-hash-input" placeholder="Paste your 64-character TxID here..." class="w-full bg-gray-950 border border-gray-800 rounded-xl px-3.5 py-3 text-xs text-white focus:outline-none focus:border-emerald-500 font-mono">
+                    </div>
+
+                    <button onclick="confirmInvestmentProcess()" class="w-full bg-emerald-500 hover:bg-emerald-600 text-black font-extrabold py-3.5 rounded-xl text-xs uppercase tracking-wider shadow-lg transition">Confirm & Submit Investment</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- ===== QR CODE LIGHTBOX MODAL ===== -->
+    <div id="qr-lightbox" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md hidden flex items-center justify-center p-4" onclick="closeQrLightbox()">
+        <div class="trading-card p-6 max-w-sm w-full text-center space-y-4 relative" onclick="event.stopPropagation()">
+            <div class="flex justify-between items-center border-b border-gray-800 pb-3">
+                <h4 class="font-bold text-sm text-white">TRC-20 Deposit QR Code</h4>
+                <button onclick="closeQrLightbox()" class="text-gray-400 hover:text-white"><i class="fa-solid fa-xmark text-lg"></i></button>
+            </div>
+            <div class="bg-white p-4 rounded-xl inline-block shadow-2xl">
+                <img id="lightbox-img" src="WhatsApp Image 2026-11-09 at 11.41.25 PM.jpeg" alt="Enlarged QR Code" class="w-64 h-64 object-contain" onerror="this.src='https://placehold.co/300x300/ffffff/000000?text=Scan+QR+Code';">
+            </div>
+            <p class="text-xs text-gray-400">Scan using any crypto wallet or TRON-compatible app.</p>
+            <div class="flex gap-3 pt-2">
+                <button onclick="downloadQrCode()" class="w-full bg-emerald-500 hover:bg-emerald-600 text-black font-bold py-2.5 rounded-xl text-xs uppercase transition flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-download"></i> Download QR
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Custom Message Box Modal (No alert() used) -->
+    <div id="message-modal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md hidden flex items-center justify-center p-4">
+        <div class="trading-card p-6 max-w-sm w-full text-center space-y-4">
+            <div id="modal-icon" class="text-3xl text-emerald-400 mb-1"><i class="fa-solid fa-circle-check"></i></div>
+            <h4 id="modal-title" class="font-bold text-base text-white">Notification</h4>
+            <p id="modal-text" class="text-xs text-gray-300 leading-relaxed">Message content goes here.</p>
+            <button onclick="closeMessageModal()" class="w-full bg-emerald-500 hover:bg-emerald-600 text-black font-extrabold py-2.5 rounded-xl text-xs uppercase tracking-wider transition">OK</button>
+        </div>
+    </div>
+
+
+    <!-- ===== JAVASCRIPT LOGIC ===== -->
+    <script>
+        // Navigation Helpers
+        function enterPlatform() {
+            document.getElementById('hero-page').classList.add('hidden');
+            document.getElementById('staking-page').classList.remove('hidden');
+            initChartIfNeeded();
+        }
+
+        function switchToHeroPage() {
+            document.getElementById('staking-page').classList.add('hidden');
+            document.getElementById('hero-page').classList.remove('hidden');
+        }
+
+        function navigatePlatform(pageId) {
+            document.querySelectorAll('#staking-page .view-page').forEach(page => page.classList.add('hidden'));
+            document.getElementById(pageId).classList.remove('hidden');
+        }
+
+        // Custom Message Box (Replaces alert() completely)
+        function showMessage(title, text, isSuccess = true) {
+            document.getElementById('modal-title').innerText = title;
+            document.getElementById('modal-text').innerText = text;
+            const iconEl = document.getElementById('modal-icon');
+            iconEl.innerHTML = isSuccess ? '<i class="fa-solid fa-circle-check text-emerald-400"></i>' : '<i class="fa-solid fa-triangle-exclamation text-yellow-400"></i>';
+            document.getElementById('message-modal').classList.remove('hidden');
+        }
+
+        function closeMessageModal() {
+            document.getElementById('message-modal').classList.add('hidden');
+        }
+
+        // QR Lightbox Handling
+        function openQrLightbox() {
+            document.getElementById('qr-lightbox').classList.remove('hidden');
+        }
+
+        function closeQrLightbox() {
+            document.getElementById('qr-lightbox').classList.add('hidden');
+        }
+
+        function downloadQrCode() {
+            const imgSrc = document.getElementById('qr-image-source').src;
+            const a = document.createElement('a');
+            a.href = imgSrc;
+            a.download = 'ProfitNova_TRC20_QR.jpg';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            showMessage("Download Started", "QR code image has been downloaded successfully.");
+        }
+
+        // Copy Wallet Address (using document.execCommand for iframe compatibility)
+        function copyWalletAddress() {
+            const addressText = document.getElementById('wallet-address-text').innerText;
+            const textarea = document.createElement('textarea');
+            textarea.value = addressText;
+            document.body.appendChild(textarea);
+            textarea.select();
+            try {
+                document.execCommand('copy');
+                const btn = document.getElementById('copy-btn');
+                btn.innerHTML = '<i class="fa-solid fa-check"></i> Copied!';
+                btn.classList.remove('bg-emerald-500', 'hover:bg-emerald-600');
+                btn.classList.add('bg-teal-600');
+                setTimeout(() => {
+                    btn.innerHTML = '<i class="fa-solid fa-copy"></i> Copy';
+                    btn.classList.remove('bg-teal-600');
+                    btn.classList.add('bg-emerald-500', 'hover:bg-emerald-600');
+                }, 2500);
+            } catch (err) {
+                showMessage("Copy Failed", "Please manually select and copy the address.", false);
+            }
+            document.body.removeChild(textarea);
+        }
+
+        // Staking & Investment State Logic
+        let currentSelectedPlan = null, chartInstance = null;
+        let state = {
+            balance: 0,
+            lockedAmount: 0,
+            dailyRate: 0,
+            totalProfit: 0,
+            daysRemaining: 0,
+            rank: "No Active Staking",
+            claimedToday: false,
+            transactions: []
+        };
+
+        function openCheckout(planName, amount, daily, total, rank) {
+            currentSelectedPlan = { planName, amount, daily, total, rank };
+            document.getElementById('chk-plan-name').innerText = planName;
+            document.getElementById('chk-amount').innerText = amount;
+            document.getElementById('chk-daily').innerText = daily.toFixed(2);
+            document.getElementById('chk-rank').innerText = rank;
+            document.getElementById('tx-hash-input').value = '';
+            navigatePlatform('checkout-page');
+        }
+
+        function confirmInvestmentProcess() {
+            const txHash = document.getElementById('tx-hash-input').value.trim();
+            if (!txHash) {
+                showMessage("Validation Error", "Kripya valid TxID enter karein confirmation ke liye.", false);
+                return;
+            }
+            state.lockedAmount += currentSelectedPlan.amount;
+            state.dailyRate = currentSelectedPlan.daily;
+            state.daysRemaining = 30;
+            state.rank = currentSelectedPlan.rank;
+            state.claimedToday = false;
+            
+            state.transactions.unshift({
+                type: `Activated ${currentSelectedPlan.planName}`,
+                amount: `+${currentSelectedPlan.amount} USDT`,
+                time: new Date().toLocaleTimeString(),
+                status: "Active"
+            });
+
+            updateUI();
+            navigatePlatform('main-page');
+            showMessage("Investment Successful!", "Aapka deposit verify ho gaya hai aur staking plan activate ho chuka hai.");
+        }
+
+        function updateUI() {
+            document.getElementById('nav-balance').innerText = state.balance.toFixed(2);
+            document.getElementById('dash-balance').innerText = state.balance.toFixed(2);
+            document.getElementById('dash-locked').innerText = state.lockedAmount.toFixed(2);
+            document.getElementById('dash-profit').innerText = state.totalProfit.toFixed(2);
+            document.getElementById('dash-days').innerText = state.daysRemaining;
+            document.getElementById('user-rank-badge').innerText = `Rank: ${state.rank}`;
+
+            const tbody = document.getElementById('tx-table-body');
+            if (state.transactions.length > 0) {
+                tbody.innerHTML = state.transactions.map(tx => `
+                    <tr>
+                        <td class="py-3 px-3 text-emerald-400 font-medium">${tx.type}</td>
+                        <td class="py-3 px-3 font-bold">${tx.amount}</td>
+                        <td class="py-3 px-3 text-gray-400 font-mono text-[10px]">${tx.time}</td>
+                        <td class="py-3 px-3"><span class="bg-emerald-500/10 text-emerald-400 text-[10px] px-2 py-0.5 rounded-full font-mono">${tx.status}</span></td>
+                    </tr>
+                `).join('');
+            }
+        }
+
+        function claimDailyReward() {
+            if (state.lockedAmount === 0) {
+                showMessage("No Active Plan", "Aapke paas koi active staking plan nahi hai.", false);
+                return;
+            }
+            if (state.claimedToday) {
+                showMessage("Already Claimed", "Aaj ka daily profit return pehle hi claim ho chuka hai. Kal dobara koshish karein.", false);
+                return;
+            }
+            state.balance += state.dailyRate;
+            state.totalProfit += state.dailyRate;
+            state.claimedToday = true;
+            
+            state.transactions.unshift({
+                type: "Daily Return Payout",
+                amount: `+${state.dailyRate.toFixed(2)} USDT`,
+                time: new Date().toLocaleTimeString(),
+                status: "Completed"
+            });
+
+            updateUI();
+            showMessage("Profit Claimed!", `${state.dailyRate.toFixed(2)} USDT aapke available balance me add kar diye gaye hain.`);
+        }
+
+        function initChartIfNeeded() {
+            if (!chartInstance) {
+                const ctx = document.getElementById('profitChart').getContext('2d');
+                chartInstance = new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: ['Day 1', 'Day 10', 'Day 20', 'Day 30'],
+                        datasets: [{
+                            label: 'Projected Growth',
+                            data: [0, 35, 70, 105],
+                            borderColor: '#14f195',
+                            borderWidth: 2.5,
+                            fill: true,
+                            backgroundColor: 'rgba(20, 241, 149, 0.08)',
+                            tension: 0.35
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: { legend: { display: false } },
+                        scales: {
+                            x: { grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: '#9ca3af', font: { size: 10 } } },
+                            y: { grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: '#9ca3af', font: { size: 10 } } }
+                        }
+                    }
+                });
+            }
+            updateUI();
+        }
+    </script>
+</body>
+</html>
