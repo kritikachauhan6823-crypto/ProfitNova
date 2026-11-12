@@ -35,6 +35,7 @@
             background-color: #03030b;
             color: #f3f4f6;
             overflow-x: hidden;
+            width: 100%;
         }
 
         .glass-card {
@@ -52,10 +53,10 @@
 
         .glow-purple {
             position: absolute;
-            width: 450px;
-            height: 450px;
+            width: 300px;
+            height: 300px;
             background: rgba(139, 92, 246, 0.15);
-            filter: blur(120px);
+            filter: blur(100px);
             border-radius: 50%;
             pointer-events: none;
             z-index: 0;
@@ -63,10 +64,10 @@
 
         .glow-blue {
             position: absolute;
-            width: 450px;
-            height: 450px;
+            width: 300px;
+            height: 300px;
             background: rgba(59, 130, 246, 0.12);
-            filter: blur(120px);
+            filter: blur(100px);
             border-radius: 50%;
             pointer-events: none;
             z-index: 0;
@@ -82,7 +83,7 @@
 
         .ticker {
             display: inline-block;
-            animation: marquee 30s linear infinite;
+            animation: marquee 25s linear infinite;
         }
 
         @keyframes marquee {
@@ -91,22 +92,20 @@
         }
 
         /* Custom Scrollbar */
-        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar { width: 6px; }
         ::-webkit-scrollbar-track { background: #03030b; }
         ::-webkit-scrollbar-thumb { background: #1e1e3f; border-radius: 4px; }
-        ::-webkit-scrollbar-thumb:hover { background: #8b5cf6; }
     </style>
 </head>
 <body class="min-h-screen flex flex-col relative selection:bg-purple-500 selection:text-white">
 
     <!-- Ambient Glow Backgrounds -->
-    <div class="glow-purple top-10 left-10"></div>
-    <div class="glow-blue top-1/2 right-10"></div>
-    <div class="glow-purple bottom-10 left-1/3"></div>
+    <div class="glow-purple top-10 left-4"></div>
+    <div class="glow-blue top-1/2 right-4"></div>
 
     <!-- ===== TOP TICKER BAR ===== -->
     <div class="ticker-wrap text-xs py-2 text-gray-400 font-mono z-30">
-        <div class="ticker flex space-x-12">
+        <div class="ticker flex space-x-8">
             <span><i class="fa-solid fa-graduation-cap text-purple-400 mr-1"></i> NOTICE: ProfitNova is an Educational Demonstration Platform. No real financial investments.</span>
             <span><i class="fa-brands fa-bitcoin text-yellow-500 mr-1"></i> BTC/USDT: <span class="text-emerald-400 font-bold">$94,250.80 (+3.4%)</span></span>
             <span><i class="fa-brands fa-ethereum text-indigo-400 mr-1"></i> ETH/USDT: <span class="text-emerald-400 font-bold">$3,480.20 (+2.1%)</span></span>
@@ -115,13 +114,13 @@
     </div>
 
     <!-- ===== NAVIGATION BAR ===== -->
-    <nav class="sticky top-0 z-40 bg-darknavy/90 backdrop-blur-md border-b border-purple-500/20 px-4 sm:px-8 py-4">
+    <nav class="sticky top-0 z-40 bg-darknavy/95 backdrop-blur-md border-b border-purple-500/20 px-4 sm:px-6 py-3.5">
         <div class="max-w-7xl mx-auto flex justify-between items-center">
-            <div class="flex items-center space-x-3 cursor-pointer" onclick="switchPage('home')">
-                <div class="p-2.5 bg-gradient-to-tr from-purple-600 to-blue-500 rounded-xl shadow-lg shadow-purple-500/30">
-                    <i class="fa-solid fa-cube text-xl text-white"></i>
+            <div class="flex items-center space-x-2.5 cursor-pointer" onclick="switchPage('home')">
+                <div class="p-2 bg-gradient-to-tr from-purple-600 to-blue-500 rounded-xl shadow-lg shadow-purple-500/30">
+                    <i class="fa-solid fa-cube text-lg text-white"></i>
                 </div>
-                <span class="text-2xl font-extrabold tracking-tight bg-gradient-to-r from-white via-purple-200 to-purple-400 bg-clip-text text-transparent">Profit<span class="text-purple-500">Nova</span></span>
+                <span class="text-xl sm:text-2xl font-extrabold tracking-tight bg-gradient-to-r from-white via-purple-200 to-purple-400 bg-clip-text text-transparent">Profit<span class="text-purple-500">Nova</span></span>
             </div>
 
             <!-- Desktop Links -->
@@ -136,107 +135,106 @@
             </div>
 
             <!-- Badges & CTA -->
-            <div class="flex items-center gap-3">
-                <div class="hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-purple-500/10 border border-purple-500/30 text-purple-300 text-xs font-bold uppercase tracking-wider">
+            <div class="flex items-center gap-2 sm:gap-3">
+                <div class="hidden md:flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-purple-500/10 border border-purple-500/30 text-purple-300 text-xs font-bold uppercase tracking-wider">
                     <span class="w-2 h-2 rounded-full bg-purple-400 animate-pulse"></span> Educational Demo
                 </div>
-                <button onclick="switchPage('dashboard')" class="px-5 py-2.5 bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-500 hover:to-blue-500 text-white font-bold text-xs uppercase tracking-wider rounded-xl shadow-lg shadow-purple-500/25 transition transform hover:scale-105">
+                <button onclick="switchPage('dashboard')" class="px-3.5 sm:px-5 py-2 bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-500 hover:to-blue-500 text-white font-bold text-[11px] sm:text-xs uppercase tracking-wider rounded-xl shadow-lg shadow-purple-500/25 transition">
                     Demo Account
                 </button>
-                <button onclick="toggleMobileMenu()" class="lg:hidden text-gray-300 hover:text-white p-2 text-lg">
+                <button onclick="toggleMobileMenu()" class="lg:hidden text-gray-300 hover:text-white p-2 text-lg focus:outline-none">
                     <i class="fa-solid fa-bars" id="mobile-menu-icon"></i>
                 </button>
             </div>
         </div>
 
         <!-- Mobile Menu Dropdown -->
-        <div id="mobile-menu" class="hidden lg:hidden pt-4 pb-2 border-t border-purple-500/20 mt-3 space-y-2 text-sm">
-            <button onclick="switchPage('home'); toggleMobileMenu();" class="block w-full text-left py-2 px-3 rounded hover:bg-purple-500/10 text-gray-300">Home</button>
-            <button onclick="switchPage('about'); toggleMobileMenu();" class="block w-full text-left py-2 px-3 rounded hover:bg-purple-500/10 text-gray-300">About Us</button>
-            <button onclick="switchPage('features'); toggleMobileMenu();" class="block w-full text-left py-2 px-3 rounded hover:bg-purple-500/10 text-gray-300">Features</button>
-            <button onclick="switchPage('plans'); toggleMobileMenu();" class="block w-full text-left py-2 px-3 rounded hover:bg-purple-500/10 text-gray-300">Staking Plans</button>
-            <button onclick="switchPage('dashboard'); toggleMobileMenu();" class="block w-full text-left py-2 px-3 rounded hover:bg-purple-500/10 text-gray-300">Dashboard</button>
-            <button onclick="switchPage('faq'); toggleMobileMenu();" class="block w-full text-left py-2 px-3 rounded hover:bg-purple-500/10 text-gray-300">FAQ</button>
-            <button onclick="switchPage('contact'); toggleMobileMenu();" class="block w-full text-left py-2 px-3 rounded hover:bg-purple-500/10 text-gray-300">Contact</button>
+        <div id="mobile-menu" class="hidden lg:hidden pt-4 pb-3 border-t border-purple-500/20 mt-3 space-y-1 text-sm bg-darknavy/95 rounded-2xl px-2">
+            <button onclick="switchPage('home'); toggleMobileMenu();" class="block w-full text-left py-2.5 px-3 rounded-xl hover:bg-purple-500/10 text-gray-300 font-medium"><i class="fa-solid fa-house w-6 text-purple-400"></i> Home</button>
+            <button onclick="switchPage('about'); toggleMobileMenu();" class="block w-full text-left py-2.5 px-3 rounded-xl hover:bg-purple-500/10 text-gray-300 font-medium"><i class="fa-solid fa-circle-info w-6 text-purple-400"></i> About Us</button>
+            <button onclick="switchPage('features'); toggleMobileMenu();" class="block w-full text-left py-2.5 px-3 rounded-xl hover:bg-purple-500/10 text-gray-300 font-medium"><i class="fa-solid fa-bolt w-6 text-purple-400"></i> Features</button>
+            <button onclick="switchPage('plans'); toggleMobileMenu();" class="block w-full text-left py-2.5 px-3 rounded-xl hover:bg-purple-500/10 text-gray-300 font-medium"><i class="fa-solid fa-coins w-6 text-purple-400"></i> Staking Plans</button>
+            <button onclick="switchPage('dashboard'); toggleMobileMenu();" class="block w-full text-left py-2.5 px-3 rounded-xl hover:bg-purple-500/10 text-gray-300 font-medium"><i class="fa-solid fa-chart-line w-6 text-purple-400"></i> Dashboard</button>
+            <button onclick="switchPage('faq'); toggleMobileMenu();" class="block w-full text-left py-2.5 px-3 rounded-xl hover:bg-purple-500/10 text-gray-300 font-medium"><i class="fa-solid fa-circle-question w-6 text-purple-400"></i> FAQ</button>
+            <button onclick="switchPage('contact'); toggleMobileMenu();" class="block w-full text-left py-2.5 px-3 rounded-xl hover:bg-purple-500/10 text-gray-300 font-medium"><i class="fa-solid fa-envelope w-6 text-purple-400"></i> Contact</button>
         </div>
     </nav>
 
     <!-- ===== MAIN CONTENT CONTAINER (SEPARATE PAGE VIEWS) ===== -->
-    <main class="flex-grow z-10 space-y-12 pb-20 pt-6">
+    <main class="flex-grow z-10 space-y-8 pb-16 pt-4 px-3 sm:px-6 max-w-7xl mx-auto w-full">
 
         <!-- PAGE 1: HOME PAGE -->
-        <div id="page-home" class="page-view max-w-7xl mx-auto px-4 sm:px-8 space-y-16">
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center pt-8">
-                <div class="lg:col-span-6 space-y-6 text-center lg:text-left">
-                    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-purple-500/10 border border-purple-500/30 text-purple-300 text-xs font-bold uppercase tracking-wider">
+        <div id="page-home" class="page-view space-y-12">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center pt-4">
+                <div class="lg:col-span-6 space-y-5 text-center lg:text-left">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-500/10 border border-purple-500/30 text-purple-300 text-[11px] sm:text-xs font-bold uppercase tracking-wider">
                         <i class="fa-solid fa-shield-halved text-purple-400"></i> Simulated Staking Experience
                     </div>
-                    <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight leading-tight">
+                    <h1 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight">
                         Explore Digital Assets with <span class="bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent">Confidence.</span>
                     </h1>
-                    <p class="text-gray-400 text-base sm:text-lg max-w-xl mx-auto lg:mx-0 leading-relaxed">
+                    <p class="text-gray-400 text-sm sm:text-base max-w-xl mx-auto lg:mx-0 leading-relaxed">
                         A simulated blockchain staking experience designed for learning, transparency and exploring digital asset technology in a risk-free environment.
                     </p>
-                    <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2">
-                        <button onclick="switchPage('dashboard')" class="w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-500 hover:to-blue-500 text-white font-extrabold text-xs uppercase tracking-wider rounded-xl shadow-xl shadow-purple-600/30 transition transform hover:scale-105 flex items-center justify-center gap-2">
+                    <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3 pt-2">
+                        <button onclick="switchPage('dashboard')" class="w-full sm:w-auto px-6 py-3.5 bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-500 hover:to-blue-500 text-white font-extrabold text-xs uppercase tracking-wider rounded-xl shadow-xl shadow-purple-600/30 transition flex items-center justify-center gap-2">
                             Explore Dashboard <i class="fa-solid fa-arrow-right"></i>
                         </button>
-                        <button onclick="switchPage('about')" class="w-full sm:w-auto px-8 py-4 glass-card hover:bg-white/5 text-gray-200 font-bold text-xs uppercase tracking-wider rounded-xl transition flex items-center justify-center gap-2">
+                        <button onclick="switchPage('about')" class="w-full sm:w-auto px-6 py-3.5 glass-card hover:bg-white/5 text-gray-200 font-bold text-xs uppercase tracking-wider rounded-xl transition flex items-center justify-center gap-2">
                             Learn More <i class="fa-solid fa-circle-info"></i>
                         </button>
                     </div>
 
                     <!-- Trust Badges -->
-                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-6 border-t border-purple-500/20">
-                        <div class="flex items-center gap-2 text-left">
-                            <div class="text-purple-400 text-base"><i class="fa-solid fa-lock"></i></div>
-                            <div><div class="text-xs font-bold text-gray-200">Secure Demo</div><div class="text-[10px] text-gray-400">Encrypted UI</div></div>
+                    <div class="grid grid-cols-2 gap-3 pt-4 border-t border-purple-500/20 text-left">
+                        <div class="flex items-center gap-2.5 p-2 rounded-xl bg-black/20">
+                            <div class="text-purple-400 text-sm"><i class="fa-solid fa-lock"></i></div>
+                            <div><div class="text-[11px] font-bold text-gray-200">Secure Demo</div><div class="text-[9px] text-gray-400">Encrypted UI</div></div>
                         </div>
-                        <div class="flex items-center gap-2 text-left">
-                            <div class="text-blue-400 text-base"><i class="fa-solid fa-bolt"></i></div>
-                            <div><div class="text-xs font-bold text-gray-200">TRON Network</div><div class="text-[10px] text-gray-400">Simulated TRC-20</div></div>
+                        <div class="flex items-center gap-2.5 p-2 rounded-xl bg-black/20">
+                            <div class="text-blue-400 text-sm"><i class="fa-solid fa-bolt"></i></div>
+                            <div><div class="text-[11px] font-bold text-gray-200">TRON Network</div><div class="text-[9px] text-gray-400">Simulated TRC-20</div></div>
                         </div>
-                        <div class="flex items-center gap-2 text-left">
-                            <div class="text-emerald-400 text-base"><i class="fa-solid fa-shield-cat"></i></div>
-                            <div><div class="text-xs font-bold text-gray-200">No Real Money</div><div class="text-[10px] text-gray-400">100% Risk-Free</div></div>
+                        <div class="flex items-center gap-2.5 p-2 rounded-xl bg-black/20">
+                            <div class="text-emerald-400 text-sm"><i class="fa-solid fa-shield-cat"></i></div>
+                            <div><div class="text-[11px] font-bold text-gray-200">No Real Money</div><div class="text-[9px] text-gray-400">100% Risk-Free</div></div>
                         </div>
-                        <div class="flex items-center gap-2 text-left">
-                            <div class="text-cyan-400 text-base"><i class="fa-solid fa-headset"></i></div>
-                            <div><div class="text-xs font-bold text-gray-200">24/7 Support</div><div class="text-[10px] text-gray-400">Student Project</div></div>
+                        <div class="flex items-center gap-2.5 p-2 rounded-xl bg-black/20">
+                            <div class="text-cyan-400 text-sm"><i class="fa-solid fa-headset"></i></div>
+                            <div><div class="text-[11px] font-bold text-gray-200">24/7 Support</div><div class="text-[9px] text-gray-400">Student Project</div></div>
                         </div>
                     </div>
                 </div>
 
                 <!-- Hero Right Visual / Dashboard Mini Preview Card -->
-                <div class="lg:col-span-6">
-                    <div class="glass-card p-6 rounded-3xl relative overflow-hidden space-y-6">
-                        <div class="absolute -right-10 -top-10 w-40 h-40 bg-purple-500/20 rounded-full blur-3xl pointer-events-none"></div>
-                        <div class="flex justify-between items-center border-b border-purple-500/20 pb-4">
-                            <div class="flex items-center gap-3">
-                                <div class="w-10 h-10 rounded-xl bg-purple-600/30 flex items-center justify-center text-purple-400 font-bold">PN</div>
+                <div class="lg:col-span-6 w-full">
+                    <div class="glass-card p-5 sm:p-6 rounded-3xl relative overflow-hidden space-y-5">
+                        <div class="flex justify-between items-center border-b border-purple-500/20 pb-3.5">
+                            <div class="flex items-center gap-2.5">
+                                <div class="w-9 h-9 rounded-xl bg-purple-600/30 flex items-center justify-center text-purple-400 font-bold text-xs">PN</div>
                                 <div>
-                                    <h4 class="font-bold text-sm text-white">Dashboard Preview</h4>
-                                    <p class="text-[11px] text-gray-400">Welcome back! Here's your portfolio overview.</p>
+                                    <h4 class="font-bold text-xs sm:text-sm text-white">Dashboard Preview</h4>
+                                    <p class="text-[10px] text-gray-400">Portfolio overview snapshot</p>
                                 </div>
                             </div>
-                            <span class="text-xs bg-emerald-500/10 text-emerald-400 px-3 py-1 rounded-full font-mono">Active Session</span>
+                            <span class="text-[10px] bg-emerald-500/10 text-emerald-400 px-2.5 py-0.5 rounded-full font-mono">Active</span>
                         </div>
 
                         <!-- Mini Stat Cards Grid -->
-                        <div class="grid grid-cols-2 gap-4">
-                            <div class="bg-black/30 p-4 rounded-2xl border border-purple-500/10">
-                                <span class="text-[10px] text-gray-400 uppercase">Total Balance</span>
-                                <div class="text-lg font-black text-white mt-1">1,250.00 <span class="text-xs font-normal text-gray-400">USDT</span></div>
+                        <div class="grid grid-cols-2 gap-3">
+                            <div class="bg-black/30 p-3.5 rounded-2xl border border-purple-500/10">
+                                <span class="text-[9px] text-gray-400 uppercase tracking-wider">Total Balance</span>
+                                <div class="text-sm sm:text-base font-black text-white mt-0.5">1,250.00 <span class="text-[10px] font-normal text-gray-400">USDT</span></div>
                             </div>
-                            <div class="bg-black/30 p-4 rounded-2xl border border-purple-500/10">
-                                <span class="text-[10px] text-gray-400 uppercase">Active Locked</span>
-                                <div class="text-lg font-black text-purple-400 mt-1">500.00 <span class="text-xs font-normal text-gray-400">USDT</span></div>
+                            <div class="bg-black/30 p-3.5 rounded-2xl border border-purple-500/10">
+                                <span class="text-[9px] text-gray-400 uppercase tracking-wider">Active Locked</span>
+                                <div class="text-sm sm:text-base font-black text-purple-400 mt-0.5">500.00 <span class="text-[10px] font-normal text-gray-400">USDT</span></div>
                             </div>
                         </div>
 
-                        <div class="flex justify-between items-center pt-2">
-                            <span class="text-xs text-gray-400"><i class="fa-solid fa-circle-info text-purple-400 mr-1"></i> Simulated educational numbers</span>
-                            <button onclick="switchPage('plans')" class="text-xs text-purple-400 font-bold hover:underline">View All Plans <i class="fa-solid fa-arrow-right ml-1"></i></button>
+                        <div class="flex justify-between items-center pt-1 text-xs">
+                            <span class="text-[11px] text-gray-400"><i class="fa-solid fa-circle-info text-purple-400 mr-1"></i> Simulated educational figures</span>
+                            <button onclick="switchPage('plans')" class="text-purple-400 font-bold hover:underline">View Plans <i class="fa-solid fa-arrow-right ml-0.5"></i></button>
                         </div>
                     </div>
                 </div>
@@ -244,298 +242,298 @@
         </div>
 
         <!-- PAGE 2: ABOUT US -->
-        <div id="page-about" class="page-view hidden max-w-7xl mx-auto px-4 sm:px-8 space-y-10">
-            <div class="text-center max-w-3xl mx-auto space-y-3 pt-6">
+        <div id="page-about" class="page-view hidden space-y-8">
+            <div class="text-center max-w-2xl mx-auto space-y-2.5 pt-2">
                 <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-500/10 text-purple-300 text-xs font-bold uppercase">
                     <i class="fa-solid fa-graduation-cap"></i> About Us
                 </div>
-                <h2 class="text-3xl sm:text-5xl font-extrabold">Built for a Smarter Digital Future</h2>
-                <p class="text-gray-400 text-sm sm:text-base">Discover the vision and academic purpose behind ProfitNova.</p>
+                <h2 class="text-2xl sm:text-4xl font-extrabold">Built for a Smarter Digital Future</h2>
+                <p class="text-gray-400 text-xs sm:text-sm">Discover the vision and academic purpose behind ProfitNova.</p>
             </div>
 
-            <div class="glass-card p-8 sm:p-12 rounded-3xl grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-                <div class="lg:col-span-7 space-y-6">
-                    <h3 class="text-2xl font-bold text-white">Educational Blockchain Platform</h3>
-                    <p class="text-gray-300 text-sm sm:text-base leading-relaxed">
+            <div class="glass-card p-6 sm:p-10 rounded-3xl grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                <div class="lg:col-span-7 space-y-5">
+                    <h3 class="text-xl sm:text-2xl font-bold text-white">Educational Blockchain Platform</h3>
+                    <p class="text-gray-300 text-xs sm:text-sm leading-relaxed">
                         ProfitNova is a modern educational blockchain platform developed as a school demonstration project. It introduces students and technology enthusiasts to the mechanics of cryptocurrency staking, smart contract simulations, and portfolio management in a safe, transparent and educational environment.
                     </p>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
-                        <div class="flex items-start gap-3">
-                            <div class="p-2 rounded-lg bg-purple-500/20 text-purple-400 mt-1"><i class="fa-solid fa-check"></i></div>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5 pt-1">
+                        <div class="flex items-start gap-2.5">
+                            <div class="p-1.5 rounded-lg bg-purple-500/20 text-purple-400 text-xs mt-0.5"><i class="fa-solid fa-check"></i></div>
                             <div>
-                                <h4 class="font-bold text-sm text-white">Transparent Systems</h4>
-                                <p class="text-xs text-gray-400">Inspect how calculations and portfolio trackers operate transparently.</p>
+                                <h4 class="font-bold text-xs text-white">Transparent Systems</h4>
+                                <p class="text-[11px] text-gray-400">Inspect portfolio trackers easily.</p>
                             </div>
                         </div>
-                        <div class="flex items-start gap-3">
-                            <div class="p-2 rounded-lg bg-purple-500/20 text-purple-400 mt-1"><i class="fa-solid fa-check"></i></div>
+                        <div class="flex items-start gap-2.5">
+                            <div class="p-1.5 rounded-lg bg-purple-500/20 text-purple-400 text-xs mt-0.5"><i class="fa-solid fa-check"></i></div>
                             <div>
-                                <h4 class="font-bold text-sm text-white">Risk-Free Learning</h4>
-                                <p class="text-xs text-gray-400">Zero real money or cryptocurrency deposits are required or accepted.</p>
+                                <h4 class="font-bold text-xs text-white">Risk-Free Learning</h4>
+                                <p class="text-[11px] text-gray-400">Zero real money required.</p>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="lg:col-span-5 flex justify-center">
-                    <div class="w-full max-w-sm p-6 rounded-2xl bg-gradient-to-br from-purple-900/40 to-blue-900/40 border border-purple-500/30 text-center space-y-4 shadow-xl">
-                        <div class="w-16 h-16 mx-auto rounded-2xl bg-purple-500/20 flex items-center justify-center text-purple-400 text-3xl">
+                    <div class="w-full max-w-xs p-5 rounded-2xl bg-gradient-to-br from-purple-900/40 to-blue-900/40 border border-purple-500/30 text-center space-y-3 shadow-xl">
+                        <div class="w-14 h-14 mx-auto rounded-xl bg-purple-500/20 flex items-center justify-center text-purple-400 text-2xl">
                             <i class="fa-solid fa-shield-network"></i>
                         </div>
-                        <h3 class="text-lg font-bold text-white">Educational Commitment</h3>
-                        <p class="text-xs text-gray-300 leading-relaxed">
-                            "Our goal is to promote digital literacy and financial technology awareness through immersive frontend simulation."
+                        <h3 class="text-base font-bold text-white">Educational Commitment</h3>
+                        <p class="text-[11px] text-gray-300 leading-relaxed">
+                            "Promoting digital literacy and financial technology awareness through immersive frontend simulation."
                         </p>
-                        <div class="pt-2 text-[11px] text-purple-300 font-mono font-bold">— ProfitNova Project Team</div>
+                        <div class="pt-1 text-[10px] text-purple-300 font-mono font-bold">— ProfitNova Team</div>
                     </div>
                 </div>
             </div>
         </div>
 
         <!-- PAGE 3: FEATURES -->
-        <div id="page-features" class="page-view hidden max-w-7xl mx-auto px-4 sm:px-8 space-y-10">
-            <div class="text-center max-w-3xl mx-auto space-y-3 pt-6">
+        <div id="page-features" class="page-view hidden space-y-8">
+            <div class="text-center max-w-2xl mx-auto space-y-2.5 pt-2">
                 <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-500/10 text-purple-300 text-xs font-bold uppercase">
                     <i class="fa-solid fa-bolt"></i> Platform Features
                 </div>
-                <h2 class="text-3xl sm:text-5xl font-extrabold">How ProfitNova Works</h2>
-                <p class="text-gray-400 text-sm sm:text-base">Explore the advanced interactive architecture and workflow.</p>
+                <h2 class="text-2xl sm:text-4xl font-extrabold">How ProfitNova Works</h2>
+                <p class="text-gray-400 text-xs sm:text-sm">Explore the advanced interactive architecture and workflow.</p>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div class="glass-card p-8 rounded-2xl space-y-4">
-                    <div class="w-12 h-12 rounded-xl bg-purple-600/30 text-purple-400 flex items-center justify-center font-black text-lg">01</div>
-                    <h3 class="text-lg font-bold text-white">Create Demo Account</h3>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+                <div class="glass-card p-6 rounded-2xl space-y-3.5">
+                    <div class="w-10 h-10 rounded-xl bg-purple-600/30 text-purple-400 flex items-center justify-center font-black text-sm">01</div>
+                    <h3 class="text-base font-bold text-white">Create Demo Account</h3>
                     <p class="text-xs text-gray-400 leading-relaxed">Launch your session instantly with simulated demo tokens to test portfolio features safely.</p>
                 </div>
-                <div class="glass-card p-8 rounded-2xl space-y-4">
-                    <div class="w-12 h-12 rounded-xl bg-blue-600/30 text-blue-400 flex items-center justify-center font-black text-lg">02</div>
-                    <h3 class="text-lg font-bold text-white">Explore Staking Plans</h3>
+                <div class="glass-card p-6 rounded-2xl space-y-3.5">
+                    <div class="w-10 h-10 rounded-xl bg-blue-600/30 text-blue-400 flex items-center justify-center font-black text-sm">02</div>
+                    <h3 class="text-base font-bold text-white">Explore Staking Plans</h3>
                     <p class="text-xs text-gray-400 leading-relaxed">Review 8 distinct simulation tiers ranging from Starter (50 USDT) to VIP Elite (50,000 USDT).</p>
                 </div>
-                <div class="glass-card p-8 rounded-2xl space-y-4">
-                    <div class="w-12 h-12 rounded-xl bg-emerald-600/30 text-emerald-400 flex items-center justify-center font-black text-lg">03</div>
-                    <h3 class="text-lg font-bold text-white">Track Simulated Portfolio</h3>
+                <div class="glass-card p-6 rounded-2xl space-y-3.5">
+                    <div class="w-10 h-10 rounded-xl bg-emerald-600/30 text-emerald-400 flex items-center justify-center font-black text-sm">03</div>
+                    <h3 class="text-base font-bold text-white">Track Simulated Portfolio</h3>
                     <p class="text-xs text-gray-400 leading-relaxed">Monitor daily returns, view interactive analytics charts, and claim simulated profits daily.</p>
                 </div>
             </div>
         </div>
 
         <!-- PAGE 4: STAKING PLANS -->
-        <div id="page-plans" class="page-view hidden max-w-7xl mx-auto px-4 sm:px-8 space-y-10">
-            <div class="text-center max-w-3xl mx-auto space-y-3 pt-6">
+        <div id="page-plans" class="page-view hidden space-y-8">
+            <div class="text-center max-w-2xl mx-auto space-y-2.5 pt-2">
                 <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-500/10 text-purple-300 text-xs font-bold uppercase">
                     <i class="fa-solid fa-coins"></i> Investment Tiers
                 </div>
-                <h2 class="text-3xl sm:text-5xl font-extrabold">Simulated Staking Plans</h2>
-                <p class="text-gray-400 text-sm">Choose an educational tier to simulate duration and daily returns. (Demo Only)</p>
+                <h2 class="text-2xl sm:text-4xl font-extrabold">Simulated Staking Plans</h2>
+                <p class="text-gray-400 text-xs sm:text-sm">Choose an educational tier to simulate duration and daily returns. (Demo Only)</p>
             </div>
 
             <!-- Plans Grid (All 8 Tiers) -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
 
                 <!-- 1. Starter -->
-                <div class="glass-card p-6 rounded-3xl flex flex-col justify-between relative overflow-hidden border-purple-500/40">
-                    <div class="absolute top-0 right-0 bg-purple-600 text-white text-[10px] font-bold px-3 py-1 rounded-bl-xl">POPULAR</div>
+                <div class="glass-card p-5 rounded-3xl flex flex-col justify-between relative overflow-hidden border-purple-500/40">
+                    <div class="absolute top-0 right-0 bg-purple-600 text-white text-[9px] font-bold px-2.5 py-0.5 rounded-bl-xl">POPULAR</div>
                     <div>
-                        <h3 class="font-bold text-base text-white mb-1">Starter Tier</h3>
-                        <div class="text-3xl font-black mb-1">50 <span class="text-xs font-normal text-gray-400">USDT</span></div>
-                        <p class="text-xs text-gray-400 mb-4">Locked for 30 Days (Demo)</p>
-                        <div class="space-y-2.5 text-xs border-t border-b border-purple-500/20 py-3.5 mb-6">
+                        <h3 class="font-bold text-sm text-white mb-1">Starter Tier</h3>
+                        <div class="text-2xl font-black mb-1">50 <span class="text-xs font-normal text-gray-400">USDT</span></div>
+                        <p class="text-[11px] text-gray-400 mb-3">Locked for 30 Days (Demo)</p>
+                        <div class="space-y-2 text-xs border-t border-b border-purple-500/20 py-3 mb-4">
                             <div class="flex justify-between"><span class="text-gray-400">Daily Return:</span><span class="font-bold text-emerald-400">+3.50 USDT</span></div>
                             <div class="flex justify-between"><span class="text-gray-400">Total Profit:</span><span class="font-bold text-white">105.00 USDT</span></div>
                             <div class="flex justify-between"><span class="text-gray-400">Rank:</span><span class="font-bold text-amber-600">Bronze</span></div>
                         </div>
                     </div>
-                    <button onclick="openCheckout('Starter Tier', 50, 3.50, 105.00, 'Tier 1 - Bronze')" class="w-full bg-purple-600 hover:bg-purple-500 text-white font-extrabold py-3.5 rounded-xl text-xs uppercase tracking-wider shadow-lg shadow-purple-600/30 transition">Select Plan</button>
+                    <button onclick="openCheckout('Starter Tier', 50, 3.50, 105.00, 'Tier 1 - Bronze')" class="w-full bg-purple-600 hover:bg-purple-500 text-white font-extrabold py-3 rounded-xl text-xs uppercase tracking-wider shadow-lg shadow-purple-600/30 transition">Select Plan</button>
                 </div>
 
                 <!-- 2. Basic -->
-                <div class="glass-card p-6 rounded-3xl flex flex-col justify-between">
+                <div class="glass-card p-5 rounded-3xl flex flex-col justify-between">
                     <div>
-                        <h3 class="font-bold text-base text-white mb-1">Basic Tier</h3>
-                        <div class="text-3xl font-black mb-1">100 <span class="text-xs font-normal text-gray-400">USDT</span></div>
-                        <p class="text-xs text-gray-400 mb-4">Locked for 30 Days (Demo)</p>
-                        <div class="space-y-2.5 text-xs border-t border-b border-purple-500/20 py-3.5 mb-6">
+                        <h3 class="font-bold text-sm text-white mb-1">Basic Tier</h3>
+                        <div class="text-2xl font-black mb-1">100 <span class="text-xs font-normal text-gray-400">USDT</span></div>
+                        <p class="text-[11px] text-gray-400 mb-3">Locked for 30 Days (Demo)</p>
+                        <div class="space-y-2 text-xs border-t border-b border-purple-500/20 py-3 mb-4">
                             <div class="flex justify-between"><span class="text-gray-400">Daily Return:</span><span class="font-bold text-emerald-400">+7.50 USDT</span></div>
                             <div class="flex justify-between"><span class="text-gray-400">Total Profit:</span><span class="font-bold text-white">225.00 USDT</span></div>
                             <div class="flex justify-between"><span class="text-gray-400">Rank:</span><span class="font-bold text-amber-500">Basic</span></div>
                         </div>
                     </div>
-                    <button onclick="openCheckout('Basic Tier', 100, 7.50, 225.00, 'Tier 1.5 - Basic')" class="w-full bg-white/10 hover:bg-white/20 text-white font-bold py-3.5 rounded-xl text-xs uppercase tracking-wider border border-purple-500/30 transition">Select Plan</button>
+                    <button onclick="openCheckout('Basic Tier', 100, 7.50, 225.00, 'Tier 1.5 - Basic')" class="w-full bg-white/10 hover:bg-white/20 text-white font-bold py-3 rounded-xl text-xs uppercase tracking-wider border border-purple-500/30 transition">Select Plan</button>
                 </div>
 
                 <!-- 3. Growth -->
-                <div class="glass-card p-6 rounded-3xl flex flex-col justify-between">
+                <div class="glass-card p-5 rounded-3xl flex flex-col justify-between">
                     <div>
-                        <h3 class="font-bold text-base text-white mb-1">Growth Tier</h3>
-                        <div class="text-3xl font-black mb-1">200 <span class="text-xs font-normal text-gray-400">USDT</span></div>
-                        <p class="text-xs text-gray-400 mb-4">Locked for 30 Days (Demo)</p>
-                        <div class="space-y-2.5 text-xs border-t border-b border-purple-500/20 py-3.5 mb-6">
+                        <h3 class="font-bold text-sm text-white mb-1">Growth Tier</h3>
+                        <div class="text-2xl font-black mb-1">200 <span class="text-xs font-normal text-gray-400">USDT</span></div>
+                        <p class="text-[11px] text-gray-400 mb-3">Locked for 30 Days (Demo)</p>
+                        <div class="space-y-2 text-xs border-t border-b border-purple-500/20 py-3 mb-4">
                             <div class="flex justify-between"><span class="text-gray-400">Daily Return:</span><span class="font-bold text-emerald-400">+15.00 USDT</span></div>
                             <div class="flex justify-between"><span class="text-gray-400">Total Profit:</span><span class="font-bold text-white">450.00 USDT</span></div>
                             <div class="flex justify-between"><span class="text-gray-400">Rank:</span><span class="font-bold text-gray-300">Silver</span></div>
                         </div>
                     </div>
-                    <button onclick="openCheckout('Growth Tier', 200, 15.00, 450.00, 'Tier 2 - Silver')" class="w-full bg-white/10 hover:bg-white/20 text-white font-bold py-3.5 rounded-xl text-xs uppercase tracking-wider border border-purple-500/30 transition">Select Plan</button>
+                    <button onclick="openCheckout('Growth Tier', 200, 15.00, 450.00, 'Tier 2 - Silver')" class="w-full bg-white/10 hover:bg-white/20 text-white font-bold py-3 rounded-xl text-xs uppercase tracking-wider border border-purple-500/30 transition">Select Plan</button>
                 </div>
 
                 <!-- 4. Advanced -->
-                <div class="glass-card p-6 rounded-3xl flex flex-col justify-between">
+                <div class="glass-card p-5 rounded-3xl flex flex-col justify-between">
                     <div>
-                        <h3 class="font-bold text-base text-white mb-1">Advanced Tier</h3>
-                        <div class="text-3xl font-black mb-1">500 <span class="text-xs font-normal text-gray-400">USDT</span></div>
-                        <p class="text-xs text-gray-400 mb-4">Locked for 30 Days (Demo)</p>
-                        <div class="space-y-2.5 text-xs border-t border-b border-purple-500/20 py-3.5 mb-6">
+                        <h3 class="font-bold text-sm text-white mb-1">Advanced Tier</h3>
+                        <div class="text-2xl font-black mb-1">500 <span class="text-xs font-normal text-gray-400">USDT</span></div>
+                        <p class="text-[11px] text-gray-400 mb-3">Locked for 30 Days (Demo)</p>
+                        <div class="space-y-2 text-xs border-t border-b border-purple-500/20 py-3 mb-4">
                             <div class="flex justify-between"><span class="text-gray-400">Daily Return:</span><span class="font-bold text-emerald-400">+40.00 USDT</span></div>
                             <div class="flex justify-between"><span class="text-gray-400">Total Profit:</span><span class="font-bold text-white">1,200.00 USDT</span></div>
                             <div class="flex justify-between"><span class="text-gray-400">Rank:</span><span class="font-bold text-teal-400">Advanced</span></div>
                         </div>
                     </div>
-                    <button onclick="openCheckout('Advanced Tier', 500, 40.00, 1200.00, 'Tier 2.5 - Advanced')" class="w-full bg-white/10 hover:bg-white/20 text-white font-bold py-3.5 rounded-xl text-xs uppercase tracking-wider border border-purple-500/30 transition">Select Plan</button>
+                    <button onclick="openCheckout('Advanced Tier', 500, 40.00, 1200.00, 'Tier 2.5 - Advanced')" class="w-full bg-white/10 hover:bg-white/20 text-white font-bold py-3 rounded-xl text-xs uppercase tracking-wider border border-purple-500/30 transition">Select Plan</button>
                 </div>
 
                 <!-- 5. Pro -->
-                <div class="glass-card p-6 rounded-3xl flex flex-col justify-between">
+                <div class="glass-card p-5 rounded-3xl flex flex-col justify-between">
                     <div>
-                        <h3 class="font-bold text-base text-white mb-1">Pro Tier</h3>
-                        <div class="text-3xl font-black mb-1">1,000 <span class="text-xs font-normal text-gray-400">USDT</span></div>
-                        <p class="text-xs text-gray-400 mb-4">Locked for 30 Days (Demo)</p>
-                        <div class="space-y-2.5 text-xs border-t border-b border-purple-500/20 py-3.5 mb-6">
+                        <h3 class="font-bold text-sm text-white mb-1">Pro Tier</h3>
+                        <div class="text-2xl font-black mb-1">1,000 <span class="text-xs font-normal text-gray-400">USDT</span></div>
+                        <p class="text-[11px] text-gray-400 mb-3">Locked for 30 Days (Demo)</p>
+                        <div class="space-y-2 text-xs border-t border-b border-purple-500/20 py-3 mb-4">
                             <div class="flex justify-between"><span class="text-gray-400">Daily Return:</span><span class="font-bold text-emerald-400">+85.00 USDT</span></div>
                             <div class="flex justify-between"><span class="text-gray-400">Total Profit:</span><span class="font-bold text-white">2,550.00 USDT</span></div>
                             <div class="flex justify-between"><span class="text-gray-400">Rank:</span><span class="font-bold text-yellow-400">Gold</span></div>
                         </div>
                     </div>
-                    <button onclick="openCheckout('Pro Tier', 1000, 85.00, 2550.00, 'Tier 3 - Gold')" class="w-full bg-white/10 hover:bg-white/20 text-white font-bold py-3.5 rounded-xl text-xs uppercase tracking-wider border border-purple-500/30 transition">Select Plan</button>
+                    <button onclick="openCheckout('Pro Tier', 1000, 85.00, 2550.00, 'Tier 3 - Gold')" class="w-full bg-white/10 hover:bg-white/20 text-white font-bold py-3 rounded-xl text-xs uppercase tracking-wider border border-purple-500/30 transition">Select Plan</button>
                 </div>
 
                 <!-- 6. Premium -->
-                <div class="glass-card p-6 rounded-3xl flex flex-col justify-between">
+                <div class="glass-card p-5 rounded-3xl flex flex-col justify-between">
                     <div>
-                        <h3 class="font-bold text-base text-white mb-1">Premium Tier</h3>
-                        <div class="text-3xl font-black mb-1">3,000 <span class="text-xs font-normal text-gray-400">USDT</span></div>
-                        <p class="text-xs text-gray-400 mb-4">Locked for 30 Days (Demo)</p>
-                        <div class="space-y-2.5 text-xs border-t border-b border-purple-500/20 py-3.5 mb-6">
+                        <h3 class="font-bold text-sm text-white mb-1">Premium Tier</h3>
+                        <div class="text-2xl font-black mb-1">3,000 <span class="text-xs font-normal text-gray-400">USDT</span></div>
+                        <p class="text-[11px] text-gray-400 mb-3">Locked for 30 Days (Demo)</p>
+                        <div class="space-y-2 text-xs border-t border-b border-purple-500/20 py-3 mb-4">
                             <div class="flex justify-between"><span class="text-gray-400">Daily Return:</span><span class="font-bold text-emerald-400">+265.00 USDT</span></div>
                             <div class="flex justify-between"><span class="text-gray-400">Total Profit:</span><span class="font-bold text-white">7,950.00 USDT</span></div>
                             <div class="flex justify-between"><span class="text-gray-400">Rank:</span><span class="font-bold text-blue-400">Platinum</span></div>
                         </div>
                     </div>
-                    <button onclick="openCheckout('Premium Tier', 3000, 265.00, 7950.00, 'Tier 3.5 - Platinum')" class="w-full bg-white/10 hover:bg-white/20 text-white font-bold py-3.5 rounded-xl text-xs uppercase tracking-wider border border-purple-500/30 transition">Select Plan</button>
+                    <button onclick="openCheckout('Premium Tier', 3000, 265.00, 7950.00, 'Tier 3.5 - Platinum')" class="w-full bg-white/10 hover:bg-white/20 text-white font-bold py-3 rounded-xl text-xs uppercase tracking-wider border border-purple-500/30 transition">Select Plan</button>
                 </div>
 
                 <!-- 7. Enterprise -->
-                <div class="glass-card p-6 rounded-3xl flex flex-col justify-between border-blue-500/40 relative">
-                    <div class="absolute top-0 right-0 bg-blue-600 text-white text-[10px] font-bold px-3 py-1 rounded-bl-xl">PRO</div>
+                <div class="glass-card p-5 rounded-3xl flex flex-col justify-between border-blue-500/40 relative">
+                    <div class="absolute top-0 right-0 bg-blue-600 text-white text-[9px] font-bold px-2.5 py-0.5 rounded-bl-xl">PRO</div>
                     <div>
-                        <h3 class="font-bold text-base text-white mb-1">Enterprise Tier</h3>
-                        <div class="text-3xl font-black mb-1">10,000 <span class="text-xs font-normal text-gray-400">USDT</span></div>
-                        <p class="text-xs text-gray-400 mb-4">Locked for 30 Days (Demo)</p>
-                        <div class="space-y-2.5 text-xs border-t border-b border-purple-500/20 py-3.5 mb-6">
+                        <h3 class="font-bold text-sm text-white mb-1">Enterprise Tier</h3>
+                        <div class="text-2xl font-black mb-1">10,000 <span class="text-xs font-normal text-gray-400">USDT</span></div>
+                        <p class="text-[11px] text-gray-400 mb-3">Locked for 30 Days (Demo)</p>
+                        <div class="space-y-2 text-xs border-t border-b border-purple-500/20 py-3 mb-4">
                             <div class="flex justify-between"><span class="text-gray-400">Daily Return:</span><span class="font-bold text-emerald-400">+950.00 USDT</span></div>
                             <div class="flex justify-between"><span class="text-gray-400">Total Profit:</span><span class="font-bold text-white">28,500.00 USDT</span></div>
                             <div class="flex justify-between"><span class="text-gray-400">Rank:</span><span class="font-bold text-indigo-400">Enterprise</span></div>
                         </div>
                     </div>
-                    <button onclick="openCheckout('Enterprise Tier', 10000, 950.00, 28500.00, 'Tier 4 - Enterprise')" class="w-full bg-blue-600 hover:bg-blue-500 text-white font-extrabold py-3.5 rounded-xl text-xs uppercase tracking-wider shadow-lg shadow-blue-600/30 transition">Select Plan</button>
+                    <button onclick="openCheckout('Enterprise Tier', 10000, 950.00, 28500.00, 'Tier 4 - Enterprise')" class="w-full bg-blue-600 hover:bg-blue-500 text-white font-extrabold py-3 rounded-xl text-xs uppercase tracking-wider shadow-lg shadow-blue-600/30 transition">Select Plan</button>
                 </div>
 
                 <!-- 8. VIP Elite -->
-                <div class="glass-card p-6 rounded-3xl flex flex-col justify-between border-cyan-500/40 relative">
-                    <div class="absolute top-0 right-0 bg-cyan-600 text-black font-extrabold text-[10px] px-3 py-1 rounded-bl-xl">ELITE</div>
+                <div class="glass-card p-5 rounded-3xl flex flex-col justify-between border-cyan-500/40 relative">
+                    <div class="absolute top-0 right-0 bg-cyan-600 text-black font-extrabold text-[9px] px-2.5 py-0.5 rounded-bl-xl">ELITE</div>
                     <div>
-                        <h3 class="font-bold text-base text-white mb-1">VIP Elite Tier</h3>
-                        <div class="text-3xl font-black mb-1">50,000 <span class="text-xs font-normal text-gray-400">USDT</span></div>
-                        <p class="text-xs text-gray-400 mb-4">Locked for 30 Days (Demo)</p>
-                        <div class="space-y-2.5 text-xs border-t border-b border-purple-500/20 py-3.5 mb-6">
+                        <h3 class="font-bold text-sm text-white mb-1">VIP Elite Tier</h3>
+                        <div class="text-2xl font-black mb-1">50,000 <span class="text-xs font-normal text-gray-400">USDT</span></div>
+                        <p class="text-[11px] text-gray-400 mb-3">Locked for 30 Days (Demo)</p>
+                        <div class="space-y-2 text-xs border-t border-b border-purple-500/20 py-3 mb-4">
                             <div class="flex justify-between"><span class="text-gray-400">Daily Return:</span><span class="font-bold text-emerald-400">+5,000.00 USDT</span></div>
                             <div class="flex justify-between"><span class="text-gray-400">Total Profit:</span><span class="font-bold text-white">150,000.00 USDT</span></div>
                             <div class="flex justify-between"><span class="text-gray-400">Rank:</span><span class="font-bold text-cyan-400">Diamond</span></div>
                         </div>
                     </div>
-                    <button onclick="openCheckout('VIP Elite Tier', 50000, 5000.00, 150000.00, 'Tier 5 - Diamond')" class="w-full bg-cyan-600 hover:bg-cyan-500 text-black font-extrabold py-3.5 rounded-xl text-xs uppercase tracking-wider shadow-lg shadow-cyan-600/30 transition">Select Plan</button>
+                    <button onclick="openCheckout('VIP Elite Tier', 50000, 5000.00, 150000.00, 'Tier 5 - Diamond')" class="w-full bg-cyan-600 hover:bg-cyan-500 text-black font-extrabold py-3 rounded-xl text-xs uppercase tracking-wider shadow-lg shadow-cyan-600/30 transition">Select Plan</button>
                 </div>
 
             </div>
         </div>
 
         <!-- PAGE 5: DASHBOARD -->
-        <div id="page-dashboard" class="page-view hidden max-w-7xl mx-auto px-4 sm:px-8 space-y-8">
-            <div class="flex flex-col sm:flex-row justify-between items-center gap-4 pt-4">
+        <div id="page-dashboard" class="page-view hidden space-y-6">
+            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 pt-2">
                 <div>
-                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-500/10 text-purple-300 text-xs font-bold uppercase mb-2">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-500/10 text-purple-300 text-xs font-bold uppercase mb-1.5">
                         <i class="fa-solid fa-chart-line"></i> User Dashboard
                     </div>
-                    <h2 class="text-3xl font-extrabold">Simulated Portfolio Analytics</h2>
+                    <h2 class="text-2xl sm:text-3xl font-extrabold">Simulated Portfolio Analytics</h2>
                 </div>
-                <div id="user-rank-badge" class="glass-card px-4 py-2.5 rounded-xl text-xs font-bold text-yellow-400 border border-yellow-500/30">
+                <div id="user-rank-badge" class="glass-card px-3.5 py-2 rounded-xl text-xs font-bold text-yellow-400 border border-yellow-500/30 w-full sm:w-auto text-center">
                     Rank: No Active Staking
                 </div>
             </div>
 
             <!-- Top Statistics Grid -->
-            <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
-                <div class="glass-card p-5 rounded-2xl">
-                    <span class="text-[10px] text-gray-400 uppercase tracking-wider">Available Demo Balance</span>
-                    <div class="text-2xl font-black text-white mt-1"><span id="dash-balance">0.00</span> <span class="text-xs text-gray-400 font-normal">USDT</span></div>
+            <div class="grid grid-cols-2 lg:grid-cols-4 gap-3.5">
+                <div class="glass-card p-4 rounded-2xl">
+                    <span class="text-[9px] text-gray-400 uppercase tracking-wider">Available Demo Balance</span>
+                    <div class="text-xl sm:text-2xl font-black text-white mt-1"><span id="dash-balance">0.00</span> <span class="text-[10px] text-gray-400 font-normal">USDT</span></div>
                 </div>
-                <div class="glass-card p-5 rounded-2xl">
-                    <span class="text-[10px] text-gray-400 uppercase tracking-wider">Active Simulated Staking</span>
-                    <div class="text-2xl font-black text-purple-400 mt-1"><span id="dash-locked">0.00</span> <span class="text-xs text-gray-400 font-normal">USDT</span></div>
+                <div class="glass-card p-4 rounded-2xl">
+                    <span class="text-[9px] text-gray-400 uppercase tracking-wider">Active Simulated Staking</span>
+                    <div class="text-xl sm:text-2xl font-black text-purple-400 mt-1"><span id="dash-locked">0.00</span> <span class="text-[10px] text-gray-400 font-normal">USDT</span></div>
                 </div>
-                <div class="glass-card p-5 rounded-2xl">
-                    <span class="text-[10px] text-gray-400 uppercase tracking-wider">Total Simulated Profit</span>
-                    <div class="text-2xl font-black text-emerald-400 mt-1"><span id="dash-profit">0.00</span> <span class="text-xs text-gray-400 font-normal">USDT</span></div>
+                <div class="glass-card p-4 rounded-2xl">
+                    <span class="text-[9px] text-gray-400 uppercase tracking-wider">Total Simulated Profit</span>
+                    <div class="text-xl sm:text-2xl font-black text-emerald-400 mt-1"><span id="dash-profit">0.00</span> <span class="text-[10px] text-gray-400 font-normal">USDT</span></div>
                 </div>
-                <div class="glass-card p-5 rounded-2xl">
-                    <span class="text-[10px] text-gray-400 uppercase tracking-wider">Lock Duration Remaining</span>
-                    <div class="text-2xl font-black text-white mt-1"><span id="dash-days">0</span> <span class="text-xs text-gray-400 font-normal">Days</span></div>
+                <div class="glass-card p-4 rounded-2xl">
+                    <span class="text-[9px] text-gray-400 uppercase tracking-wider">Lock Duration Remaining</span>
+                    <div class="text-xl sm:text-2xl font-black text-white mt-1"><span id="dash-days">0</span> <span class="text-[10px] text-gray-400 font-normal">Days</span></div>
                 </div>
             </div>
 
             <!-- Chart & Actions Grid -->
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
-                <div class="lg:col-span-8 glass-card p-6 rounded-3xl space-y-4">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-5">
+                <div class="lg:col-span-8 glass-card p-5 rounded-3xl space-y-3.5">
                     <div class="flex justify-between items-center">
-                        <h3 class="font-bold text-base text-white">Profit & Loss Overview</h3>
+                        <h3 class="font-bold text-sm sm:text-base text-white">Profit & Loss Overview</h3>
                         <div class="flex gap-2 text-xs">
-                            <button class="px-3 py-1 rounded bg-purple-600/30 text-purple-300 font-bold">30D</button>
+                            <button class="px-2.5 py-0.5 rounded bg-purple-600/30 text-purple-300 font-bold text-[11px]">30D</button>
                         </div>
                     </div>
-                    <div class="h-64 w-full">
+                    <div class="h-56 sm:h-64 w-full">
                         <canvas id="mainProfitChart"></canvas>
                     </div>
                 </div>
 
-                <div class="lg:col-span-4 glass-card p-6 rounded-3xl flex flex-col justify-between space-y-6">
+                <div class="lg:col-span-4 glass-card p-5 rounded-3xl flex flex-col justify-between space-y-5">
                     <div>
-                        <h3 class="font-bold text-base text-white mb-2">Simulated Payout Action</h3>
+                        <h3 class="font-bold text-sm sm:text-base text-white mb-1.5">Simulated Payout Action</h3>
                         <p class="text-xs text-gray-400 leading-relaxed">
                             Simulate daily reward accumulation. Click below to credit your active plan's daily return to your demo balance.
                         </p>
                     </div>
-                    <div class="p-4 rounded-2xl bg-black/40 border border-purple-500/20 space-y-2">
-                        <div class="flex justify-between text-xs text-gray-300"><span>Daily Earning Rate:</span><span id="dash-daily-rate" class="font-bold text-emerald-400">0.00 USDT</span></div>
-                        <div class="flex justify-between text-xs text-gray-300"><span>Status:</span><span class="font-bold text-purple-300">Ready for Simulation</span></div>
+                    <div class="p-3.5 rounded-2xl bg-black/40 border border-purple-500/20 space-y-1.5 text-xs">
+                        <div class="flex justify-between text-gray-300"><span>Daily Earning Rate:</span><span id="dash-daily-rate" class="font-bold text-emerald-400">0.00 USDT</span></div>
+                        <div class="flex justify-between text-gray-300"><span>Status:</span><span class="font-bold text-purple-300">Ready for Simulation</span></div>
                     </div>
-                    <button onclick="claimDailyReward()" class="w-full bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-400 hover:to-teal-400 text-black font-extrabold py-3.5 rounded-xl text-xs uppercase tracking-wider shadow-lg transition">
+                    <button onclick="claimDailyReward()" class="w-full bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-400 hover:to-teal-400 text-black font-extrabold py-3 rounded-xl text-xs uppercase tracking-wider shadow-lg transition">
                         Claim Daily Profit Return
                     </button>
                 </div>
             </div>
 
             <!-- Transaction History Log -->
-            <div class="glass-card p-6 rounded-3xl space-y-4">
-                <h3 class="font-bold text-base text-white flex items-center gap-2">
+            <div class="glass-card p-5 rounded-3xl space-y-3.5 overflow-hidden">
+                <h3 class="font-bold text-sm sm:text-base text-white flex items-center gap-2">
                     <i class="fa-solid fa-clock-rotate-left text-purple-400"></i> Transaction & Activity Log
                 </h3>
-                <div class="overflow-x-auto">
-                    <table class="w-full text-left text-xs text-gray-300">
+                <div class="overflow-x-auto -mx-5 sm:mx-0 px-5 sm:px-0">
+                    <table class="w-full text-left text-xs text-gray-300 min-w-[450px]">
                         <thead class="bg-black/40 text-gray-400 uppercase text-[10px]">
-                            <tr><th class="py-3 px-4 rounded-l-xl">Type</th><th class="py-3 px-4">Amount</th><th class="py-3 px-4">Timestamp</th><th class="py-3 px-4 rounded-r-xl">Status</th></tr>
+                            <tr><th class="py-2.5 px-3 rounded-l-xl">Type</th><th class="py-2.5 px-3">Amount</th><th class="py-2.5 px-3">Timestamp</th><th class="py-2.5 px-3 rounded-r-xl">Status</th></tr>
                         </thead>
                         <tbody id="tx-table-body" class="divide-y divide-purple-500/10">
-                            <tr><td colspan="4" class="text-center py-8 text-gray-500 font-mono">No simulation activity logged yet. Select a staking plan above to begin.</td></tr>
+                            <tr><td colspan="4" class="text-center py-6 text-gray-500 font-mono text-[11px]">No simulation activity logged yet. Select a staking plan above to begin.</td></tr>
                         </tbody>
                     </table>
                 </div>
@@ -543,52 +541,52 @@
         </div>
 
         <!-- PAGE 6: FAQ -->
-        <div id="page-faq" class="page-view hidden max-w-4xl mx-auto px-4 sm:px-8 space-y-8">
-            <div class="text-center max-w-2xl mx-auto space-y-3 pt-6">
+        <div id="page-faq" class="page-view hidden max-w-4xl mx-auto space-y-6">
+            <div class="text-center max-w-2xl mx-auto space-y-2.5 pt-2">
                 <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-500/10 text-purple-300 text-xs font-bold uppercase">
                     <i class="fa-solid fa-circle-question"></i> FAQ
                 </div>
-                <h2 class="text-3xl sm:text-4xl font-extrabold">Frequently Asked Questions</h2>
-                <p class="text-gray-400 text-sm">Find answers to common questions about the ProfitNova educational project.</p>
+                <h2 class="text-2xl sm:text-4xl font-extrabold">Frequently Asked Questions</h2>
+                <p class="text-gray-400 text-xs sm:text-sm">Find answers to common questions about the ProfitNova educational project.</p>
             </div>
 
-            <div class="space-y-4">
+            <div class="space-y-3.5">
                 <div class="glass-card rounded-2xl overflow-hidden transition">
-                    <button onclick="toggleFaq(1)" class="w-full p-5 text-left font-bold text-sm sm:text-base flex justify-between items-center text-white">
+                    <button onclick="toggleFaq(1)" class="w-full p-4 sm:p-5 text-left font-bold text-xs sm:text-sm flex justify-between items-center text-white gap-3">
                         <span>Is this a real investment platform?</span>
-                        <i class="fa-solid fa-chevron-down text-purple-400 transition transform" id="faq-icon-1"></i>
+                        <i class="fa-solid fa-chevron-down text-purple-400 transition transform shrink-0" id="faq-icon-1"></i>
                     </button>
-                    <div id="faq-content-1" class="hidden px-5 pb-5 text-xs sm:text-sm text-gray-300 border-t border-purple-500/10 pt-4 leading-relaxed">
+                    <div id="faq-content-1" class="hidden px-4 sm:px-5 pb-4 text-xs text-gray-300 border-t border-purple-500/10 pt-3 leading-relaxed">
                         No. ProfitNova is strictly an educational demonstration project created for school evaluation. No real cryptocurrency, money deposits, or actual investments are accepted or processed.
                     </div>
                 </div>
 
                 <div class="glass-card rounded-2xl overflow-hidden transition">
-                    <button onclick="toggleFaq(2)" class="w-full p-5 text-left font-bold text-sm sm:text-base flex justify-between items-center text-white">
+                    <button onclick="toggleFaq(2)" class="w-full p-4 sm:p-5 text-left font-bold text-xs sm:text-sm flex justify-between items-center text-white gap-3">
                         <span>Will I receive real money or crypto returns?</span>
-                        <i class="fa-solid fa-chevron-down text-purple-400 transition transform" id="faq-icon-2"></i>
+                        <i class="fa-solid fa-chevron-down text-purple-400 transition transform shrink-0" id="faq-icon-2"></i>
                     </button>
-                    <div id="faq-content-2" class="hidden px-5 pb-5 text-xs sm:text-sm text-gray-300 border-t border-purple-500/10 pt-4 leading-relaxed">
+                    <div id="faq-content-2" class="hidden px-4 sm:px-5 pb-4 text-xs text-gray-300 border-t border-purple-500/10 pt-3 leading-relaxed">
                         No real financial returns or payouts are promised or provided. All portfolio balances, staking tiers, and daily profits shown on the platform are purely simulated demo examples.
                     </div>
                 </div>
 
                 <div class="glass-card rounded-2xl overflow-hidden transition">
-                    <button onclick="toggleFaq(3)" class="w-full p-5 text-left font-bold text-sm sm:text-base flex justify-between items-center text-white">
+                    <button onclick="toggleFaq(3)" class="w-full p-4 sm:p-5 text-left font-bold text-xs sm:text-sm flex justify-between items-center text-white gap-3">
                         <span>How do the simulated staking calculations work?</span>
-                        <i class="fa-solid fa-chevron-down text-purple-400 transition transform" id="faq-icon-3"></i>
+                        <i class="fa-solid fa-chevron-down text-purple-400 transition transform shrink-0" id="faq-icon-3"></i>
                     </button>
-                    <div id="faq-content-3" class="hidden px-5 pb-5 text-xs sm:text-sm text-gray-300 border-t border-purple-500/10 pt-4 leading-relaxed">
+                    <div id="faq-content-3" class="hidden px-4 sm:px-5 pb-4 text-xs text-gray-300 border-t border-purple-500/10 pt-3 leading-relaxed">
                         Each tier calculates illustrative daily returns based on a fixed 30-day simulation cycle. For example, the Starter Tier simulates a 3.50 USDT daily return on a 50 USDT simulated stake.
                     </div>
                 </div>
 
                 <div class="glass-card rounded-2xl overflow-hidden transition">
-                    <button onclick="toggleFaq(4)" class="w-full p-5 text-left font-bold text-sm sm:text-base flex justify-between items-center text-white">
+                    <button onclick="toggleFaq(4)" class="w-full p-4 sm:p-5 text-left font-bold text-xs sm:text-sm flex justify-between items-center text-white gap-3">
                         <span>Is my personal data safe?</span>
-                        <i class="fa-solid fa-chevron-down text-purple-400 transition transform" id="faq-icon-4"></i>
+                        <i class="fa-solid fa-chevron-down text-purple-400 transition transform shrink-0" id="faq-icon-4"></i>
                     </button>
-                    <div id="faq-content-4" class="hidden px-5 pb-5 text-xs sm:text-sm text-gray-300 border-t border-purple-500/10 pt-4 leading-relaxed">
+                    <div id="faq-content-4" class="hidden px-4 sm:px-5 pb-4 text-xs text-gray-300 border-t border-purple-500/10 pt-3 leading-relaxed">
                         Yes. Since this is an educational demo, no sensitive personal information or passwords are collected or stored on any external database.
                     </div>
                 </div>
@@ -596,43 +594,43 @@
         </div>
 
         <!-- PAGE 7: CONTACT -->
-        <div id="page-contact" class="page-view hidden max-w-7xl mx-auto px-4 sm:px-8 space-y-10">
-            <div class="glass-card p-8 sm:p-12 rounded-3xl grid grid-cols-1 lg:grid-cols-12 gap-10 pt-6">
-                <div class="lg:col-span-5 space-y-6">
+        <div id="page-contact" class="page-view hidden space-y-8">
+            <div class="glass-card p-6 sm:p-10 rounded-3xl grid grid-cols-1 lg:grid-cols-12 gap-8 pt-2">
+                <div class="lg:col-span-5 space-y-5">
                     <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-500/10 text-purple-300 text-xs font-bold uppercase">
                         <i class="fa-solid fa-envelope"></i> Contact Us
                     </div>
-                    <h2 class="text-3xl font-extrabold">Get in Touch</h2>
-                    <p class="text-gray-300 text-sm leading-relaxed">
+                    <h2 class="text-2xl sm:text-3xl font-extrabold">Get in Touch</h2>
+                    <p class="text-gray-300 text-xs sm:text-sm leading-relaxed">
                         Have questions about the ProfitNova educational project? Send us a message and we'll get back to you during school hours.
                     </p>
-                    <div class="space-y-4 text-xs sm:text-sm text-gray-300">
+                    <div class="space-y-3 text-xs text-gray-300">
                         <div class="flex items-center gap-3"><i class="fa-solid fa-envelope text-purple-400 w-5"></i><span>support@profitnova.demo</span></div>
                         <div class="flex items-center gap-3"><i class="fa-solid fa-location-dot text-purple-400 w-5"></i><span>New Delhi, India (Educational Demo)</span></div>
                         <div class="flex items-center gap-3"><i class="fa-solid fa-clock text-purple-400 w-5"></i><span>Mon - Fri: 9:00 AM - 6:00 PM</span></div>
                     </div>
                 </div>
                 <div class="lg:col-span-7">
-                    <form id="contact-form" onsubmit="handleContactSubmit(event)" class="space-y-4">
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <form id="contact-form" onsubmit="handleContactSubmit(event)" class="space-y-3.5">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
                             <div>
-                                <label class="text-xs text-gray-400 block mb-1 font-bold">Your Name</label>
-                                <input type="text" id="contact-name" placeholder="Enter your name" required class="w-full bg-black/40 border border-purple-500/20 rounded-xl px-4 py-3 text-xs text-white focus:outline-none focus:border-purple-500">
+                                <label class="text-[11px] text-gray-400 block mb-1 font-bold">Your Name</label>
+                                <input type="text" id="contact-name" placeholder="Enter your name" required class="w-full bg-black/40 border border-purple-500/20 rounded-xl px-3.5 py-2.5 text-xs text-white focus:outline-none focus:border-purple-500">
                             </div>
                             <div>
-                                <label class="text-xs text-gray-400 block mb-1 font-bold">Email Address</label>
-                                <input type="email" id="contact-email" placeholder="Enter your email" required class="w-full bg-black/40 border border-purple-500/20 rounded-xl px-4 py-3 text-xs text-white focus:outline-none focus:border-purple-500">
+                                <label class="text-[11px] text-gray-400 block mb-1 font-bold">Email Address</label>
+                                <input type="email" id="contact-email" placeholder="Enter your email" required class="w-full bg-black/40 border border-purple-500/20 rounded-xl px-3.5 py-2.5 text-xs text-white focus:outline-none focus:border-purple-500">
                             </div>
                         </div>
                         <div>
-                            <label class="text-xs text-gray-400 block mb-1 font-bold">Subject</label>
-                            <input type="text" id="contact-subject" placeholder="Project Inquiry / Feedback" required class="w-full bg-black/40 border border-purple-500/20 rounded-xl px-4 py-3 text-xs text-white focus:outline-none focus:border-purple-500">
+                            <label class="text-[11px] text-gray-400 block mb-1 font-bold">Subject</label>
+                            <input type="text" id="contact-subject" placeholder="Project Inquiry / Feedback" required class="w-full bg-black/40 border border-purple-500/20 rounded-xl px-3.5 py-2.5 text-xs text-white focus:outline-none focus:border-purple-500">
                         </div>
                         <div>
-                            <label class="text-xs text-gray-400 block mb-1 font-bold">Message</label>
-                            <textarea id="contact-msg" rows="4" placeholder="Write your message here..." required class="w-full bg-black/40 border border-purple-500/20 rounded-xl px-4 py-3 text-xs text-white focus:outline-none focus:border-purple-500"></textarea>
+                            <label class="text-[11px] text-gray-400 block mb-1 font-bold">Message</label>
+                            <textarea id="contact-msg" rows="4" placeholder="Write your message here..." required class="w-full bg-black/40 border border-purple-500/20 rounded-xl px-3.5 py-2.5 text-xs text-white focus:outline-none focus:border-purple-500"></textarea>
                         </div>
-                        <button type="submit" class="w-full bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-500 hover:to-blue-500 text-white font-extrabold py-3.5 rounded-xl text-xs uppercase tracking-wider shadow-lg shadow-purple-600/30 transition">
+                        <button type="submit" class="w-full bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-500 hover:to-blue-500 text-white font-extrabold py-3 rounded-xl text-xs uppercase tracking-wider shadow-lg shadow-purple-600/30 transition">
                             Send Message
                         </button>
                     </form>
@@ -643,51 +641,51 @@
     </main>
 
     <!-- ===== CHECKOUT MODAL WITH CLICKABLE & DOWNLOADABLE QR CODE ===== -->
-    <div id="checkout-modal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md hidden flex items-center justify-center p-4">
-        <div class="glass-card p-6 sm:p-8 max-w-md w-full rounded-3xl space-y-6 relative border border-purple-500/40" onclick="event.stopPropagation()">
-            <div class="flex justify-between items-center border-b border-purple-500/20 pb-4">
-                <h3 id="chk-plan-name" class="font-extrabold text-lg text-white">Starter Tier</h3>
-                <button onclick="closeCheckoutModal()" class="text-gray-400 hover:text-white text-lg"><i class="fa-solid fa-xmark"></i></button>
+    <div id="checkout-modal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md hidden flex items-center justify-center p-3 sm:p-4 overflow-y-auto">
+        <div class="glass-card p-5 sm:p-6 max-w-md w-full rounded-3xl space-y-4 relative border border-purple-500/40 my-auto" onclick="event.stopPropagation()">
+            <div class="flex justify-between items-center border-b border-purple-500/20 pb-3">
+                <h3 id="chk-plan-name" class="font-extrabold text-base sm:text-lg text-white">Starter Tier</h3>
+                <button onclick="closeCheckoutModal()" class="text-gray-400 hover:text-white text-base"><i class="fa-solid fa-xmark"></i></button>
             </div>
 
-            <div class="space-y-3 text-xs">
+            <div class="space-y-2 text-xs">
                 <div class="flex justify-between text-gray-300"><span>Simulated Stake:</span><span class="font-bold text-white"><span id="chk-amount">50</span> USDT</span></div>
                 <div class="flex justify-between text-gray-300"><span>Daily Return:</span><span class="font-bold text-emerald-400"><span id="chk-daily">3.50</span> USDT</span></div>
                 <div class="flex justify-between text-gray-300"><span>Assigned Rank:</span><span id="chk-rank" class="font-bold text-purple-300">Tier 1 - Bronze</span></div>
             </div>
 
             <!-- Simulated QR Code Demo (Click to Zoom) -->
-            <div class="bg-black/40 p-4 rounded-2xl border border-purple-500/20 text-center space-y-3">
-                <div class="text-[11px] text-purple-300 font-bold uppercase flex items-center justify-center gap-1">
+            <div class="bg-black/40 p-3.5 rounded-2xl border border-purple-500/20 text-center space-y-2.5">
+                <div class="text-[10px] text-purple-300 font-bold uppercase flex items-center justify-center gap-1">
                     <i class="fa-solid fa-qrcode"></i> Simulated TRC-20 QR Code (Click to Zoom)
                 </div>
-                <div class="w-36 h-36 mx-auto bg-white p-2 rounded-xl flex items-center justify-center shadow-lg cursor-pointer group relative overflow-hidden" onclick="openQrLightbox()">
+                <div class="w-32 h-32 mx-auto bg-white p-2 rounded-xl flex items-center justify-center shadow-lg cursor-pointer group relative overflow-hidden" onclick="openQrLightbox()">
                     <img id="qr-image-source" src="WhatsApp Image 2026-11-09 at 11.41.25 PM.jpeg" alt="QR Code" class="w-full h-full object-contain transition transform group-hover:scale-105" onerror="this.src='https://placehold.co/150x150/ffffff/000000?text=Scan+QR';">
                     <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 flex items-center justify-center text-white text-xs font-bold transition">
                         <i class="fa-solid fa-expand mr-1"></i> Enlarge
                     </div>
                 </div>
-                <button onclick="downloadQrCode()" class="text-[11px] bg-purple-600/30 hover:bg-purple-600/50 text-purple-300 font-bold px-3 py-1.5 rounded-lg border border-purple-500/30 transition">
+                <button onclick="downloadQrCode()" class="text-[10px] bg-purple-600/30 hover:bg-purple-600/50 text-purple-300 font-bold px-3 py-1 rounded-lg border border-purple-500/30 transition">
                     <i class="fa-solid fa-download mr-1"></i> Download QR Image
                 </button>
             </div>
 
-            <div class="space-y-1.5">
-                <label class="text-[11px] text-gray-400 block font-bold">TRC-20 Deposit Address</label>
-                <div class="bg-black/50 border border-purple-500/20 rounded-xl p-3 flex items-center justify-between gap-2">
-                    <span id="wallet-address-text" class="text-xs font-mono text-purple-300 truncate">TEkbzpGAGoCcrQeTZP6uGc78b1Lg8LnyTt</span>
-                    <button onclick="copyWalletAddress()" id="copy-btn" class="bg-purple-600 hover:bg-purple-500 text-white font-bold px-3 py-1.5 rounded-lg text-[10px] uppercase transition shrink-0">
+            <div class="space-y-1">
+                <label class="text-[10px] text-gray-400 block font-bold">TRC-20 Deposit Address</label>
+                <div class="bg-black/50 border border-purple-500/20 rounded-xl p-2.5 flex items-center justify-between gap-2">
+                    <span id="wallet-address-text" class="text-[11px] font-mono text-purple-300 truncate">TEkbzpGAGoCcrQeTZP6uGc78b1Lg8LnyTt</span>
+                    <button onclick="copyWalletAddress()" id="copy-btn" class="bg-purple-600 hover:bg-purple-500 text-white font-bold px-2.5 py-1 rounded-lg text-[9px] uppercase transition shrink-0">
                         <i class="fa-solid fa-copy"></i> Copy
                     </button>
                 </div>
             </div>
 
-            <div class="space-y-1.5">
-                <label class="text-[11px] text-gray-400 block font-bold">Enter Simulated Transaction Hash (TxID)</label>
-                <input type="text" id="tx-hash-input" placeholder="Paste any 64-char sample TxID..." class="w-full bg-black/50 border border-purple-500/20 rounded-xl px-3.5 py-3 text-xs text-white font-mono focus:outline-none focus:border-purple-500">
+            <div class="space-y-1">
+                <label class="text-[10px] text-gray-400 block font-bold">Enter Simulated Transaction Hash (TxID)</label>
+                <input type="text" id="tx-hash-input" placeholder="Paste any 64-char sample TxID..." class="w-full bg-black/50 border border-purple-500/20 rounded-xl px-3 py-2.5 text-xs text-white font-mono focus:outline-none focus:border-purple-500">
             </div>
 
-            <button onclick="confirmInvestmentProcess()" class="w-full bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-500 hover:to-blue-500 text-white font-extrabold py-3.5 rounded-xl text-xs uppercase tracking-wider shadow-lg shadow-purple-600/30 transition">
+            <button onclick="confirmInvestmentProcess()" class="w-full bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-500 hover:to-blue-500 text-white font-extrabold py-3 rounded-xl text-xs uppercase tracking-wider shadow-lg shadow-purple-600/30 transition">
                 Confirm & Activate Staking Plan
             </button>
         </div>
@@ -695,16 +693,16 @@
 
     <!-- ===== QR LIGHTBOX ZOOM MODAL ===== -->
     <div id="qr-lightbox" class="fixed inset-0 z-50 bg-black/90 backdrop-blur-md hidden flex items-center justify-center p-4" onclick="closeQrLightbox()">
-        <div class="glass-card p-6 max-w-sm w-full rounded-3xl text-center space-y-4 border border-purple-500/40 relative" onclick="event.stopPropagation()">
-            <div class="flex justify-between items-center border-b border-purple-500/20 pb-3">
-                <h4 class="font-bold text-sm text-white">TRC-20 Deposit QR Code</h4>
-                <button onclick="closeQrLightbox()" class="text-gray-400 hover:text-white"><i class="fa-solid fa-xmark text-lg"></i></button>
+        <div class="glass-card p-5 max-w-xs w-full rounded-3xl text-center space-y-3.5 border border-purple-500/40 relative" onclick="event.stopPropagation()">
+            <div class="flex justify-between items-center border-b border-purple-500/20 pb-2.5">
+                <h4 class="font-bold text-xs text-white">TRC-20 Deposit QR Code</h4>
+                <button onclick="closeQrLightbox()" class="text-gray-400 hover:text-white"><i class="fa-solid fa-xmark text-base"></i></button>
             </div>
-            <div class="bg-white p-4 rounded-2xl inline-block shadow-2xl">
-                <img id="lightbox-img" src="WhatsApp Image 2026-11-09 at 11.41.25 PM.jpeg" alt="Enlarged QR Code" class="w-64 h-64 object-contain" onerror="this.src='https://placehold.co/300x300/ffffff/000000?text=Scan+QR';">
+            <div class="bg-white p-3 rounded-2xl inline-block shadow-2xl">
+                <img id="lightbox-img" src="WhatsApp Image 2026-11-09 at 11.41.25 PM.jpeg" alt="Enlarged QR Code" class="w-52 h-52 object-contain" onerror="this.src='https://placehold.co/300x300/ffffff/000000?text=Scan+QR';">
             </div>
-            <p class="text-xs text-gray-400">Scan using any crypto wallet or TRON-compatible app.</p>
-            <button onclick="downloadQrCode()" class="w-full bg-purple-600 hover:bg-purple-500 text-white font-bold py-2.5 rounded-xl text-xs uppercase transition flex items-center justify-center gap-2">
+            <p class="text-[11px] text-gray-400">Scan using any wallet or download.</p>
+            <button onclick="downloadQrCode()" class="w-full bg-purple-600 hover:bg-purple-500 text-white font-bold py-2 rounded-xl text-xs uppercase transition flex items-center justify-center gap-1.5">
                 <i class="fa-solid fa-download"></i> Download QR Image
             </button>
         </div>
@@ -712,58 +710,58 @@
 
     <!-- ===== CUSTOM NOTIFICATION MODAL ===== -->
     <div id="message-modal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md hidden flex items-center justify-center p-4">
-        <div class="glass-card p-6 max-w-sm w-full rounded-3xl text-center space-y-4 border border-purple-500/40">
-            <div id="modal-icon" class="text-4xl text-emerald-400"><i class="fa-solid fa-circle-check"></i></div>
-            <h4 id="modal-title" class="font-bold text-base text-white">Notification</h4>
+        <div class="glass-card p-5 max-w-xs w-full rounded-3xl text-center space-y-3.5 border border-purple-500/40">
+            <div id="modal-icon" class="text-3xl text-emerald-400"><i class="fa-solid fa-circle-check"></i></div>
+            <h4 id="modal-title" class="font-bold text-sm text-white">Notification</h4>
             <p id="modal-text" class="text-xs text-gray-300 leading-relaxed">Message content goes here.</p>
-            <button onclick="closeMessageModal()" class="w-full bg-purple-600 hover:bg-purple-500 text-white font-extrabold py-2.5 rounded-xl text-xs uppercase tracking-wider transition">OK</button>
+            <button onclick="closeMessageModal()" class="w-full bg-purple-600 hover:bg-purple-500 text-white font-extrabold py-2 rounded-xl text-xs uppercase tracking-wider transition">OK</button>
         </div>
     </div>
 
     <!-- ===== FOOTER ===== -->
-    <footer class="bg-darknavy border-t border-purple-500/20 pt-16 pb-12 z-10">
-        <div class="max-w-7xl mx-auto px-4 sm:px-8 space-y-12">
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
-                <div class="lg:col-span-2 space-y-4">
-                    <div class="flex items-center space-x-3 cursor-pointer" onclick="switchPage('home')">
-                        <div class="p-2 bg-gradient-to-tr from-purple-600 to-blue-500 rounded-xl">
-                            <i class="fa-solid fa-cube text-lg text-white"></i>
+    <footer class="bg-darknavy border-t border-purple-500/20 pt-10 pb-8 z-10 px-3 sm:px-6">
+        <div class="max-w-7xl mx-auto space-y-8">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
+                <div class="lg:col-span-2 space-y-3">
+                    <div class="flex items-center space-x-2.5 cursor-pointer" onclick="switchPage('home')">
+                        <div class="p-1.5 bg-gradient-to-tr from-purple-600 to-blue-500 rounded-xl">
+                            <i class="fa-solid fa-cube text-base text-white"></i>
                         </div>
-                        <span class="text-xl font-extrabold text-white">Profit<span class="text-purple-400">Nova</span></span>
+                        <span class="text-lg font-extrabold text-white">Profit<span class="text-purple-400">Nova</span></span>
                     </div>
-                    <p class="text-xs text-gray-400 leading-relaxed max-w-sm">
+                    <p class="text-[11px] text-gray-400 leading-relaxed max-w-sm">
                         ProfitNova is a simulated blockchain staking platform developed exclusively for educational demonstration, frontend UI design, and academic evaluation.
                     </p>
                 </div>
-                <div class="space-y-3">
+                <div class="space-y-2">
                     <h4 class="font-bold text-xs text-white uppercase tracking-wider">Platform</h4>
-                    <ul class="space-y-2 text-xs text-gray-400">
+                    <ul class="space-y-1.5 text-xs text-gray-400">
                         <li><button onclick="switchPage('home')" class="hover:text-purple-400 transition">Home</button></li>
                         <li><button onclick="switchPage('about')" class="hover:text-purple-400 transition">About Us</button></li>
                         <li><button onclick="switchPage('features')" class="hover:text-purple-400 transition">Features</button></li>
                         <li><button onclick="switchPage('plans')" class="hover:text-purple-400 transition">Staking Plans</button></li>
                     </ul>
                 </div>
-                <div class="space-y-3">
+                <div class="space-y-2">
                     <h4 class="font-bold text-xs text-white uppercase tracking-wider">Resources</h4>
-                    <ul class="space-y-2 text-xs text-gray-400">
+                    <ul class="space-y-1.5 text-xs text-gray-400">
                         <li><button onclick="switchPage('dashboard')" class="hover:text-purple-400 transition">Dashboard</button></li>
                         <li><button onclick="switchPage('faq')" class="hover:text-purple-400 transition">FAQ</button></li>
                         <li><button onclick="switchPage('contact')" class="hover:text-purple-400 transition">Contact Us</button></li>
                     </ul>
                 </div>
-                <div class="space-y-3">
+                <div class="space-y-2">
                     <h4 class="font-bold text-xs text-white uppercase tracking-wider">Legal & Trust</h4>
-                    <ul class="space-y-2 text-xs text-gray-400">
+                    <ul class="space-y-1.5 text-xs text-gray-400">
                         <li><span class="text-gray-500">Educational Demo</span></li>
                         <li><span class="text-gray-500">No Real Money</span></li>
                     </ul>
                 </div>
             </div>
 
-            <div class="border-t border-purple-500/20 pt-8 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-gray-500">
+            <div class="border-t border-purple-500/20 pt-6 flex flex-col sm:flex-row justify-between items-center gap-3 text-[11px] text-gray-500 text-center sm:text-left">
                 <div>&copy; 2026 ProfitNova Global Platform. All rights reserved. (Educational Demo)</div>
-                <div class="text-center sm:text-right font-mono text-[10px] text-purple-400">
+                <div class="font-mono text-[9px] text-purple-400">
                     EDUCATIONAL DEMO — NO REAL MONEY INVOLVED
                 </div>
             </div>
@@ -774,11 +772,9 @@
     <script>
         // Separate Page Switcher Function
         function switchPage(pageId) {
-            // Hide all page views
             document.querySelectorAll('.page-view').forEach(page => {
                 page.classList.add('hidden');
             });
-            // Show target page view
             const targetPage = document.getElementById(`page-${pageId}`);
             if (targetPage) {
                 targetPage.classList.remove('hidden');
@@ -933,10 +929,10 @@
             if (state.transactions.length > 0) {
                 tbody.innerHTML = state.transactions.map(tx => `
                     <tr>
-                        <td class="py-3 px-4 text-purple-300 font-medium">${tx.type}</td>
-                        <td class="py-3 px-4 font-bold text-white">${tx.amount}</td>
-                        <td class="py-3 px-4 text-gray-400 font-mono text-[10px]">${tx.time}</td>
-                        <td class="py-3 px-4"><span class="bg-purple-500/10 text-purple-300 text-[10px] px-2.5 py-1 rounded-full font-mono">${tx.status}</span></td>
+                        <td class="py-2.5 px-3 text-purple-300 font-medium">${tx.type}</td>
+                        <td class="py-2.5 px-3 font-bold text-white">${tx.amount}</td>
+                        <td class="py-2.5 px-3 text-gray-400 font-mono text-[10px]">${tx.time}</td>
+                        <td class="py-2.5 px-3"><span class="bg-purple-500/10 text-purple-300 text-[10px] px-2 py-0.5 rounded-full font-mono">${tx.status}</span></td>
                     </tr>
                 `).join('');
             }
@@ -981,8 +977,8 @@
                     maintainAspectRatio: false,
                     plugins: { legend: { display: false } },
                     scales: {
-                        x: { grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: '#9ca3af', font: { size: 10 } } },
-                        y: { grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: '#9ca3af', font: { size: 10 } } }
+                        x: { grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: '#9ca3af', font: { size: 9 } } },
+                        y: { grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: '#9ca3af', font: { size: 9 } } }
                     }
                 }
             });
